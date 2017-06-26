@@ -1,0 +1,12 @@
+{
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 1,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+  },
+  "parser": "babel-eslint"
+}
