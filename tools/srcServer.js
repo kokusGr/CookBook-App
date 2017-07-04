@@ -29,5 +29,6 @@ app.listen(port, (err) => {
     console.log(err);
   } else {
     open(`http://localhost:${port}`);
+    console.log('Starting dev server...');
   }
 });

@@ -37,6 +37,11 @@ export default {
         exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel-loader']
+      },
+      {
+        test: /\.(jpeg|jpg|png)$/,
+        loader: ['file-loader'],
+        include: path.join(__dirname, 'src/images')
       }
     ]
   }
