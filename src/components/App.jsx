@@ -1,14 +1,14 @@
 import React from 'react';
+import globalStyle from '../globalStyle'; // eslint-disable-line no-unused-vars
 import RecipesListPage from './RecipesList/RecipesListPage';
-import Wrapper from './common/layout/Wrapper';
+import Header from './Header/Header';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Wrapper>
-          <RecipesListPage />
-        </Wrapper>
+        <Header />
+        <RecipesListPage />
       </div>
     );
   }

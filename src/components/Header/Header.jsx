@@ -1,0 +1,38 @@
+import React from 'react';
+import styled from 'styled-components';
+import Image from '../common/style/Image';
+import Navi from './Navi';
+import Logo from './Logo';
+import Wrapper from '../common/layout/Wrapper';
+
+const HeaderContainer = styled.header`
+  background-color: #444444;
+
+  &  nav {
+    float: right;
+  }
+
+  &  img {
+    float: left;
+  }
+
+  &:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+`;
+
+/* eslint-disable global-require */
+const Header = () => (
+  <HeaderContainer>
+    <Wrapper wide>
+      <Logo>
+        <Image src={require('../../images/logo.svg')} />
+      </Logo>
+      <Navi />
+    </Wrapper>
+  </HeaderContainer>
+);
+
+export default Header;

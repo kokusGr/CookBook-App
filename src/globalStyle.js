@@ -6,6 +6,9 @@ injectGlobal`
   }
 
   body {
-    background-color: blue;
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
   }
 `;
+
+export default injectGlobal;

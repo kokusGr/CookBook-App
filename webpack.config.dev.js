@@ -39,7 +39,7 @@ export default {
         loaders: ['babel-loader']
       },
       {
-        test: /\.(jpeg|jpg|png)$/,
+        test: /\.(jpeg|jpg|png|svg)$/,
         loader: ['file-loader'],
         include: path.join(__dirname, 'src/images')
       }
