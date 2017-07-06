@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 const TopBox = styled.div`
-  position: relative;
-  background-color: #DCDCDC;
+  background-color: ${props => props.theme.colors.mainGray};
   padding: 20px;
 
   &:after {

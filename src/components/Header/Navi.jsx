@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledNavi = styled.nav`
   padding: 30px 50px;
+
   & ul {
     padding: 0;
     margin: 0;

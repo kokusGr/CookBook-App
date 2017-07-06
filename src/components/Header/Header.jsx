@@ -6,7 +6,7 @@ import Logo from './Logo';
 import Wrapper from '../common/layout/Wrapper';
 
 const HeaderContainer = styled.header`
-  background-color: #444444;
+  background-color: ${props => props.theme.colors.mainBlack};
 
   &  nav {
     float: right;
