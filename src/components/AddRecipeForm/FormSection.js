@@ -15,7 +15,7 @@ const FormSection = styled.div`
     color: #FFF;
   }
 
-  & > input[type="text"] {
+  &  input[type="text"] {
     margin: 0 auto;
     display: block;
   }
