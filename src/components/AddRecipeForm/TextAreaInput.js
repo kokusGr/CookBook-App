@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import TextareaAutoSize from 'react-autosize-textarea';
 
-const TextAreaInput = styled.textarea`
+const TextAreaInput = styled(TextareaAutoSize)`
   background: ${props => props.theme.colors.lightGray};
   padding: 10px;
   font-size: 1.5rem;
@@ -8,6 +9,9 @@ const TextAreaInput = styled.textarea`
   color: ${props => props.theme.colors.mainBlack};
   border: none;
   border-radius: 10px;
+  width: 90%;
+  min-height: 100px;
+  resize: none;
 `;
 
 export default TextAreaInput;

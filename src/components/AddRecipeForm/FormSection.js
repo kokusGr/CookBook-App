@@ -27,9 +27,6 @@ const FormSection = styled.div`
   }
 
   & textarea {
-    width: 90%;
-    min-height: 100px;
-    resize: none;
     margin: 0 auto;
     display: block;
   }
