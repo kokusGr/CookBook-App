@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   cursor: pointer;
-  background-color: ${props => props.theme.colors.mainOrange};
+  background-color: ${props => (props.bg ? props.bg : props.theme.colors.mainOrange)};
   color: #FFF;
   border: none;
   height: 60%;
