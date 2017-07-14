@@ -13,7 +13,6 @@ const StyledImageInput = styled.div`
     width: 200px;
     color: #FFF;
     margin: 10px auto;
-    text-align: center;
     cursor: pointer;
     background: ${props => props.theme.colors.mainBlack};
   }

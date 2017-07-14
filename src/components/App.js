@@ -4,6 +4,7 @@ import theme from '../theme';
 import globalStyle from '../globalStyle'; // eslint-disable-line no-unused-vars
 import RecipesListPage from './RecipesList/RecipesListPage';
 import Header from './Header/Header';
+import AddRecipeFormPage from './AddRecipeForm/AddRecipeFormPage';
 
 const App = () =>
   (
@@ -11,6 +12,7 @@ const App = () =>
       <div>
         <Header />
         <RecipesListPage />
+        {/* <AddRecipeFormPage /> */}
       </div>
     </ThemeProvider>
   );

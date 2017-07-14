@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from '../common/style/Image';
+import Image from '../common/Image';
 import Navi from './Navi';
 import Logo from './Logo';
-import Wrapper from '../common/layout/Wrapper';
+import Wrapper from '../common/Wrapper';
 
 const HeaderContainer = styled.header`
   background-color: ${props => props.theme.colors.mainBlack};

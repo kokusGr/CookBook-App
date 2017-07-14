@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Image from '../common/style/Image';
+import Image from '../common/Image';
 
 const PreviewBox = styled.div`
-& img {
-  width: 50%;
-  padding: 5px;
-  display: inline-block;
-}
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0 20px;
 
-& div {
-  text-align: center;
-}
+  & img {
+    width: 50%;
+    padding: 5px;
+  }
 `;
 
 const PreviewImages = ({ images }) => (

@@ -8,7 +8,7 @@ const Columns = styled.div.attrs({
   column-gap: ${props => props.spacing};
   width: 100%;
 
-  & > div {
+  & > * {
     margin-bottom: ${props => props.spacing};
   }
 `;

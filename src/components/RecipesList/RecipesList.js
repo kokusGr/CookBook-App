@@ -1,7 +1,7 @@
 import React from 'react';
-import Columns from '../common/layout/Columns';
-import Image from '../common/style/Image';
-import Thumbnail from '../common/style/Thumbnail';
+import Columns from '../common/Columns';
+import Image from '../common/Image';
+import Thumbnail from '../common/Thumbnail';
 
 /* eslint-disable global-require */
 class RecipesList extends React.Component {
@@ -17,7 +17,7 @@ class RecipesList extends React.Component {
             <Image src={require('../../images/burger.jpeg')} alt="burger" />
           </Thumbnail>
           <Thumbnail>
-            <Image src={require('../../images/choclate-cake.jpeg')} alt="burger" />
+            <Image src={require('../../images/chocolate-cake.jpeg')} alt="burger" />
             <h3>Chocolate Cake</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -49,7 +49,7 @@ class RecipesList extends React.Component {
             <Image src={require('../../images/burger.jpeg')} alt="burger" />
           </Thumbnail>
           <Thumbnail>
-            <Image src={require('../../images/choclate-cake.jpeg')} alt="burger" />
+            <Image src={require('../../images/chocolate-cake.jpeg')} alt="burger" />
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna
               aliqua. Ut enim ad minim veniam, quis nostrud exercitation

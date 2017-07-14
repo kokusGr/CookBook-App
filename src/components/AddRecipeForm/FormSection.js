@@ -1,34 +1,17 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const FormSection = styled.div`
   width: 600px;
   margin: 0 auto;
   background-color: ${props => props.theme.colors.mainOrange};
-  padding: 10px 30px;
+  padding: 30px;
   margin-top: 110px;
   border-radius: 20px;
+  text-align: center;
 
   & h2 {
-    text-align: center;
-    margin: 40px auto;
-    display: block;
     color: #FFF;
-  }
-
-  &  input[type="text"] {
-    margin: 0 auto;
-    display: block;
-  }
-
-  & > button {
-    display: block;
-    margin: 20px auto 10px;
-    float: right;
-  }
-
-  & textarea {
-    margin: 0 auto;
-    display: block;
   }
 
   &:after {
@@ -38,4 +21,8 @@ const FormSection = styled.div`
   }
 `;
 
-export default FormSection;
+export default (props) => (
+  <FormSection>
+
+  </FormSection>
+);

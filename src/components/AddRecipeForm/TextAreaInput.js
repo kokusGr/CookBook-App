@@ -7,11 +7,11 @@ const TextAreaInput = styled(TextareaAutoSize)`
   font-size: 1.5rem;
   text-align: center;
   color: ${props => props.theme.colors.mainBlack};
-  border: none;
   border-radius: 10px;
   width: 90%;
   min-height: 100px;
   resize: none;
+  margin: 10px 0;
 `;
 
 export default TextAreaInput;

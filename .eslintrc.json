@@ -7,7 +7,8 @@
   "rules": {
     "comma-dangle": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}],
-    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "react/jsx-filename-extension": 0
   },
   "parser": "babel-eslint"
 }
