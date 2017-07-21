@@ -17,7 +17,7 @@ class RecipeIngridients extends React.Component {
     newIngridient: ''
   }
 
-  handleClick = () => {
+  addNewIngridient = () => {
     const name = this.state.newIngridient.trim();
     if (name.length > 0) {
       const ingridients = this.props.ingridients.slice('');
@@ -26,11 +26,17 @@ class RecipeIngridients extends React.Component {
         name
       };
       ingridients.push(newIngridient);
-      this.props.addListItem(ingridients, 'ingridients');
+      this.props.updateList(ingridients, 'ingridients');
       this.setState({
         newIngridient: ''
       });
     }
+  }
+
+  deleteIngridient = (e) => {
+    const newArr = this.props.ingridients
+      .filter(ingridient => ingridient.id !== e.currentTarget.id);
+    this.props.updateList(newArr, 'ingridients');
   }
 
   handleChange = (e) => {
@@ -56,13 +62,13 @@ class RecipeIngridients extends React.Component {
           <Button
             noMargin add // eslint-disable-line
             id="newIngridient"
-            onClick={this.handleClick}
+            onClick={this.addNewIngridient}
           >+</Button>
         </FlexBox>
         <ul>
           {ingridients.map(ingridient => (
             <ListItem key={ingridient.id}>
-              <IconCircle leftCenter small>
+              <IconCircle leftCenter small id={ingridient.id} onClick={this.deleteIngridient}>
                 <MdClear />
               </IconCircle>
               {ingridient.name}
@@ -81,7 +87,7 @@ RecipeIngridients.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  addListItem: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired
 };
 
 export default RecipeIngridients;

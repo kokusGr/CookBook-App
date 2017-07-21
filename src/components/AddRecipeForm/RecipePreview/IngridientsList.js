@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MdClear from 'react-icons/lib/md/clear';
 import MdEdit from 'react-icons/lib/md/edit';
-import IconCircle from '../../common/IconCircle';
 import ListTitle from './ListTitle';
 import Section from './Section';
 import Button from '../../common/Button';
@@ -28,9 +26,6 @@ const IngridientsList = ({ ingridients }) => (
       <List>
         {ingridients.map(ingridient => (
           <ListItem key={ingridient.id}>
-            <IconCircle leftCenter small>
-              <MdClear />
-            </IconCircle>
             {ingridient.name}
           </ListItem>
         ))}

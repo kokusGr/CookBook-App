@@ -7,12 +7,12 @@ import Label from './Label';
 import ImageInput from './ImageInput';
 import ImagePreview from './ImagePreview';
 
-const RecipeImages = ({ onChange, images, proceed }) => (
+const RecipeImages = ({ onChange, images, proceed, updateList }) => (
   <FormSection>
     <Heading>Please Enter Short Description</Heading>
     <Label file htmlFor="img">Add new image</Label>
     <ImageInput onChange={onChange} id="img" />
-    <ImagePreview images={images} />
+    <ImagePreview images={images} updateList={updateList} />
     <Button next primary onClick={proceed}>Proceed</Button>
   </FormSection>
 );
@@ -23,7 +23,8 @@ RecipeImages.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     src: PropTypes.string
-  }))
+  })),
+  updateList: PropTypes.func.isRequired
 };
 
 export default RecipeImages;

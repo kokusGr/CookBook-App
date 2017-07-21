@@ -16,7 +16,7 @@ class RecipeTags extends React.Component {
     newTag: ''
   }
 
-  handleClick = () => {
+  addNewTag = () => {
     const name = this.state.newTag.trim();
     if (name.length > 0) {
       const tags = this.props.tags.slice('');
@@ -25,11 +25,16 @@ class RecipeTags extends React.Component {
         name
       };
       tags.push(newTag);
-      this.props.addListItem(tags, 'tags');
+      this.props.updateList(tags, 'tags');
       this.setState({
         newTag: ''
       });
     }
+  }
+
+  deleteTag = (e) => {
+    const newArr = this.props.tags.filter(tag => tag.id !== e.currentTarget.id);
+    this.props.updateList(newArr, 'tags');
   }
 
   handleChange = (e) => {
@@ -54,13 +59,13 @@ class RecipeTags extends React.Component {
           />
           <Button
             noMargin add // eslint-disable-line
-            onClick={this.handleClick}
+            onClick={this.addNewTag}
           >+</Button>
         </FlexBox>
         <ul>
           {tags.map(tag => (
             <TagContainer key={tag.id} tag={tag.name}>
-              <IconCircle topCenter small>
+              <IconCircle topCenter small id={tag.id} onClick={this.deleteTag}>
                 <MdClear />
               </IconCircle>
             </TagContainer>
@@ -78,7 +83,7 @@ RecipeTags.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  addListItem: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired
 };
 
 export default RecipeTags;

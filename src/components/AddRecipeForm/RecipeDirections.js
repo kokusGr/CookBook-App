@@ -21,7 +21,7 @@ class RecipeDirections extends React.Component {
     newDirection: ''
   }
 
-  handleClick = () => {
+  addNewDirection = () => {
     const name = this.state.newDirection.trim();
     if (name.length > 0) {
       const directions = this.props.directions.slice('');
@@ -30,11 +30,17 @@ class RecipeDirections extends React.Component {
         name
       };
       directions.push(newDirection);
-      this.props.addListItem(directions, 'directions');
+      this.props.updateList(directions, 'directions');
       this.setState({
         newDirection: ''
       });
     }
+  }
+
+  deleteDirection = (e) => {
+    const newArr = this.props.directions
+      .filter(direction => direction.id !== e.currentTarget.id);
+    this.props.updateList(newArr, 'directions');
   }
 
   handleChange = (e) => {
@@ -59,13 +65,13 @@ class RecipeDirections extends React.Component {
           />
           <Button
             noMargin add //eslint-disable-line
-            onClick={this.handleClick}
+            onClick={this.addNewDirection}
           >+</Button>
         </FlexBox>
         <OrderedList>
           {directions.map(direction => (
             <ListItem direction key={direction.id}>
-              <IconCircle leftCenter small>
+              <IconCircle leftCenter small id={direction.id} onClick={this.deleteDirection}>
                 <MdClear />
               </IconCircle>
               {direction.name}
@@ -84,7 +90,7 @@ RecipeDirections.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  addListItem: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired
 };
 
 export default RecipeDirections;
