@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const FormSection = styled.div`
@@ -10,10 +9,6 @@ const FormSection = styled.div`
   border-radius: 20px;
   text-align: center;
 
-  & h2 {
-    color: #FFF;
-  }
-
   &:after {
     clear: both;
     display: table;
@@ -21,8 +16,4 @@ const FormSection = styled.div`
   }
 `;
 
-export default (props) => (
-  <FormSection>
-
-  </FormSection>
-);
+export default FormSection;

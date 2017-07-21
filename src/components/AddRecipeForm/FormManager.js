@@ -1,111 +1,148 @@
 import React from 'react';
-import TextInput, { AddInput } from './TextInput';
-import ImageInput from './ImageInput';
-import TextAreaInput from './TextAreaInput';
-import Columns from '../common/Columns';
-import Heading from '../common/Heading';
-import ImagePrewiev from './ImagePreview';
-import FormSection from './FormSection';
+import RecipePreview from './RecipePreview/RecipePreview';
+import RecipeName from './RecipeName';
+import RecipeImages from './RecipeImages';
+import RecipeDescription from './RecipeDescription';
+import RecipeIngridients from './RecipeIngridients';
+import RecipeDirections from './RecipeDirections';
+import RecipeAdditionalInfo from './RecipeAdditionalInfo';
+import RecipeTags from './RecipeTags';
+import uniqueId from '../../utils/uniqueId';
 
 class FormManager extends React.Component {
   state = {
-    currentQuestion: 0,
-    inputs: ['name', 'desc', 'img', 'ingridients', 'directions', 'tags'],
+    currentStepNum: 0,
+    steps: ['name', 'description', 'img', 'ingridients', 'directions', 'info', 'tags', 'preview'],
     name: '',
-    images: ['https://static.pexels.com/photos/381198/pexels-photo-381198.jpeg', 'https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg'],
-    ingridients: ['chicken breast']
+    description: '',
+    images: [],
+    ingridients: [],
+    directions: [],
+    newDirection: '',
+    kcal: '',
+    servings: '',
+    tags: [],
+    newTag: ''
+  }
+
+  getForm = (currentStep) => {
+    const form = this.formTable[currentStep];
+    if (form) {
+      return form();
+    }
+    return null;
+  }
+
+  formTable = {
+    name: () => (
+      <RecipeName
+        proceed={this.handleClick}
+        value={this.state.name}
+        onChange={this.handleChange}
+      />),
+    description: () => (
+      <RecipeDescription
+        proceed={this.handleClick}
+        onChange={this.handleChange}
+        value={this.state.description}
+      />),
+    img: () => (
+      <RecipeImages
+        images={this.state.images}
+        onChange={this.addImage}
+        proceed={this.handleClick}
+      />),
+    ingridients: () => (
+      <RecipeIngridients
+        ingridients={this.state.ingridients}
+        proceed={this.handleClick}
+        addListItem={this.addListItem}
+      />),
+    directions: () => (
+      <RecipeDirections
+        directions={this.state.directions}
+        addListItem={this.addListItem}
+        proceed={this.handleClick}
+      />),
+    info: () => (
+      <RecipeAdditionalInfo
+        kcal={this.state.kcal}
+        servings={this.state.servings}
+        onChange={this.handleChange}
+        proceed={this.handleClick}
+      />
+    ),
+    tags: () => (
+      <RecipeTags
+        tags={this.state.tags}
+        proceed={this.handleClick}
+        addListItem={this.addListItem}
+      />),
+    preview: () => (
+      <RecipePreview
+        name={this.state.name}
+        description={this.state.description}
+        images={this.state.images}
+        ingridients={this.state.ingridients}
+        directions={this.state.directions}
+        kcal={this.state.kcal}
+        servings={this.state.servings}
+        tags={this.state.tags}
+      />)
+  }
+
+  deleteListItem = (index, listName) => {
+    const state = Object.assign({}, { ...this.state });
+    state[listName].splice(index, 1);
+    this.setState({
+      ...state
+    });
+  }
+
+  addListItem = (newArr, id) => {
+    const state = Object.assign({}, { ...this.state });
+    state[id] = newArr;
+    this.setState({
+      ...state
+    });
   }
 
   handleChange = (e) => {
+    const field = e.target.id;
+    const state = Object.assign({}, { ...this.state });
+    state[field] = e.target.value;
     this.setState({
-      name: e.target.value
+      ...state
     });
   }
 
   handleClick = () => {
     this.setState(prevState => ({
-      currentQuestion: prevState.currentQuestion + 1
+      currentStepNum: prevState.currentStepNum + 1
     }));
   }
 
   addImage = (e) => {
-    const newImg = e.target.files[0];
+    const srcFile = e.target.files[0];
+    const src = window.URL.createObjectURL(srcFile);
+    const newImg = {
+      id: uniqueId(),
+      src
+    };
     const images = this.state.images.slice('');
-    images.push(window.URL.createObjectURL(newImg));
+    images.push(newImg);
     this.setState({
       images
     });
   }
 
-  renderForm = (currentQuestion) => {
-    let input;
-    switch (currentQuestion) {
-      case 'name':
-        input = (
-          <div>
-            <Heading>Please Enter Recipe Name</Heading>
-            <TextInput primary placeholder="Chicken Kiev" value={this.state.name} onChange={this.handleChange} />
-          </div>
-        );
-        break;
-      case 'desc':
-        input = (
-          <div>
-            <Heading>Please Enter Short Description</Heading>
-            <TextAreaInput placeholder="Crispy on the outside and tender inside. Just perfect way to serve a chicken!" />
-          </div>
-        );
-        break;
-      case 'img':
-        input = (
-          <div>
-            <Heading>Please Insert Recipe Img</Heading>
-            <ImageInput onChange={this.addImage} />
-            <ImagePrewiev images={this.state.images} />
-          </div>
-        );
-        break;
-      case 'ingridients':
-        input = (
-          <div>
-            <Heading>Please Add Ingridients</Heading>
-            <div>
-              <AddInput placeholder="add New Ingridient" />
-              <AddButton>Add</AddButton>
-            </div>
-            <Columns cols="2">
-              <div>
-                <TextInput inline placeholder="ingridient" />
-                <i>X</i>
-                <i>E</i>
-              </div>
-              <div>
-                <TextInput inline placeholder="ingridient" />
-                <i>X</i>
-                <i>E</i>
-              </div>
-              <div>
-                <TextInput inline placeholder="ingridient" />
-                <i>X</i>
-                <i>E</i>
-              </div>
-              <div>
-                <TextInput inline placeholder="ingridient" />
-                <i>X</i>
-                <i>E</i>
-              </div>
-            </Columns>
-          </div>
-        );
-        break;
-      default:
-        break;
-    }
-  }
-
   render() {
+    const currentStep = this.state.steps[this.state.currentStepNum];
+    const form = this.getForm(currentStep);
     return (
-      <FormSection />
+      <div>
+        {form}
+      </div>
     );
   }
 }

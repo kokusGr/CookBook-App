@@ -7,28 +7,45 @@ const style = {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     background: none;
-    font-size: ${props => (props.primary ? '2.5rem' : '1.1rem')};
+    font-size: 1.1rem;
     text-align: center;
     color: #FFF;
-    min-height: ${props => (props.primary ? '50px' : '20px')};
+    padding-bottom: 5px;
     width: 90%;
     resize: none;
-    padding: 5px;
     break-inside: avoid;
     outline: 0;
     margin: 10px 0;
+    font-style: italic;
+  `,
+
+  primary: css`
+    font-size: 2rem;
+  `,
+
+  listInput: css`
+    background: #FFF;
+    margin: 0;
+    color: ${props => props.theme.colors.mainBlack};
+    padding: 13px;
+    font-size: 1.3rem;
+  `,
+
+  box: css`
+    background: #FFF;
+    padding: 10px;
+    border: none;
+    color: ${props => props.theme.colors.mainBlack};
+    min-height: 100px;
   `
 };
-const TextInput = styled(({ primary, inline, ...props }) =>
-  <TextareaAutoSize {...props} />
+const TextInput = styled(({ primary, listInput, box, value, ...props }) =>
+  <TextareaAutoSize {...props} value={value} />
 )`
   ${style.default}
-`;
-
-export const AddInput = TextInput.extend`
-  display: inline-block;
-  background: ${props => props.theme.colors.lightGray};
-  color: ${props => props.theme.colors.mainBlack};
+  ${props => (props.primary ? style.primary : null)}
+  ${props => (props.listInput ? style.listInput : null)}
+  ${props => (props.box ? style.box : null)}
 `;
 
 export default TextInput;
