@@ -10,7 +10,15 @@ injectGlobal`
   }
 
   body {
-    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+  }
+
+  body, input, textarea, button {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  ul, ol {
+    padding: 0;
     margin: 0;
   }
 `;
