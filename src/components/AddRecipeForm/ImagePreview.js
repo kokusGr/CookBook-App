@@ -1,34 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Image from '../common/Image';
+import MdClear from 'react-icons/lib/md/clear';
+import IconCircle from '../common/IconCircle';
+import ImageContainer from '../common/ImageContainer';
+import FlexBox from '../common/FlexBox';
 
-const PreviewBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 30px 0 20px;
-
-  & img {
-    width: 50%;
-    padding: 5px;
-  }
-`;
-
-const PreviewImages = ({ images }) => (
-  <PreviewBox>
+const PreviewImages = ({ images, ...props }) => (
+  <FlexBox {...props}>
     {images.length === 0 && <p>No images were selected!</p>}
-    {images.map(img => (<Image
-      key={images.indexOf(img)}
-      src={img}
-    />)
-  )}
-  </PreviewBox>
+    {images.map(img => (
+      <ImageContainer key={img.id} src={img.src}>
+        <IconCircle topCenter>
+          <MdClear />
+        </IconCircle>
+      </ImageContainer>)
+    )}
+  </FlexBox>
 );
 
 PreviewImages.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired
+  images: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    src: PropTypes.string
+  })).isRequired
 };
 
 export default PreviewImages;
