@@ -46,7 +46,7 @@ class RecipeIngridients extends React.Component {
   }
 
   render() {
-    const { ingridients, proceed } = this.props;
+    const { ingridients, proceed, isEditing, finishEditing } = this.props;
     return (
       <FormSection>
         <Heading>Please Add Needed Ingridients</Heading>
@@ -75,7 +75,8 @@ class RecipeIngridients extends React.Component {
             </ListItem>
           ))}
         </ul>
-        <Button next primary onClick={proceed}>Proceed</Button>
+        {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
+        {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
       </FormSection>
     );
   }
@@ -87,7 +88,9 @@ RecipeIngridients.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  updateList: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeIngridients;

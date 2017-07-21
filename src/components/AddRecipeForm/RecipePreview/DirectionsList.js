@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MdEdit from 'react-icons/lib/md/edit';
 import ListTitle from './ListTitle';
-import Button from '../../common/Button';
 import Section from './Section';
 import ListItem from '../ListItem';
 
 const StyledDirectionsList = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
 const OrderedList = styled.ol`
@@ -16,12 +14,8 @@ const OrderedList = styled.ol`
   counter-reset: directions;
 `;
 
-const DirectionList = ({ directions }) => (
-  <Section>
-    <Button edit>
-      <i><MdEdit /></i>
-      <span>Edit</span>
-    </Button>
+const DirectionList = ({ directions, editSection }) => (
+  <Section editSection={editSection} id="directions">
     <StyledDirectionsList>
       <ListTitle>Directions</ListTitle>
       <OrderedList>
@@ -38,8 +32,9 @@ const DirectionList = ({ directions }) => (
 DirectionList.propTypes = {
   directions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }))
+    name: PropTypes.string.isRequired
+  })),
+  editSection: PropTypes.func.isRequired
 };
 
 export default DirectionList;

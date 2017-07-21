@@ -44,7 +44,7 @@ class RecipeTags extends React.Component {
   }
 
   render() {
-    const { tags, proceed } = this.props;
+    const { tags, proceed, isEditing, finishEditing } = this.props;
     return (
       <FormSection>
         <Heading>Please Add Tags</Heading>
@@ -71,7 +71,8 @@ class RecipeTags extends React.Component {
             </TagContainer>
           ))}
         </ul>
-        <Button next primary onClick={proceed}>Proceed</Button>
+        {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
+        {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
       </FormSection>
     );
   }
@@ -83,7 +84,9 @@ RecipeTags.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  updateList: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeTags;

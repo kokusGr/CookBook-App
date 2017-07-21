@@ -13,7 +13,7 @@ const StyledInfoForm = styled.div`
   margin: 0 auto;
 `;
 
-const RecipeAdditionalInfo = ({ kcal, servings, onChange, proceed }) => (
+const RecipeAdditionalInfo = ({ kcal, servings, onChange, proceed, isEditing, finishEditing }) => (
   <FormSection>
     <Heading>Please Provide Some Additional Info</Heading>
     <StyledInfoForm>
@@ -24,7 +24,8 @@ const RecipeAdditionalInfo = ({ kcal, servings, onChange, proceed }) => (
       <NumberInput id="servings" value={servings} onChange={onChange} />
       <Label htmlFor="servings">Number of servings</Label>
     </StyledInfoForm>
-    <Button next primary onClick={proceed}>Proceed</Button>
+    {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
+    {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
   </FormSection>
 );
 
@@ -32,7 +33,9 @@ RecipeAdditionalInfo.propTypes = {
   kcal: PropTypes.string.isRequired,
   servings: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  proceed: PropTypes.func.isRequired
+  proceed: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeAdditionalInfo;

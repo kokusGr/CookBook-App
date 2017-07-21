@@ -11,18 +11,19 @@ import uniqueId from '../../utils/uniqueId';
 
 class FormManager extends React.Component {
   state = {
+    isEditing: false,
     currentStepNum: 0,
-    steps: ['name', 'description', 'img', 'ingridients', 'directions', 'info', 'tags', 'preview'],
-    name: '',
-    description: '',
+    steps: ['name', 'description', 'images', 'ingridients', 'directions', 'info', 'tags', 'preview'],
+    name: 'Pizza',
+    description: 'Best ever!',
     images: [
       { src: 'https://static.pexels.com/photos/381198/pexels-photo-381198.jpeg', id: uniqueId() },
       { src: 'https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg', id: uniqueId() }
     ],
     ingridients: [{ name: 'Chicken breast', id: uniqueId() }, { name: 'Butter', id: uniqueId() }, { name: 'Bread crumbs', id: uniqueId() }, { name: 'Spinach', id: uniqueId() }],
     directions: [{ name: 'To sterilise jars, preheat oven to 140C/120C Fan/Gas 1. Wash 3 standard jam jars in hot, soapy water and rinse. Remove any rubber seals then heat in the oven for 30 mins.', id: uniqueId() }, { name: 'Blitz the peaches and lemon juice in a processor until smooth. Blend in the sugar, eggs and yolks.', id: uniqueId() }, { name: 'Melt the butter in a pan then whisk in the peach mixture. Heat on low for 30 mins, stirring with a wooden spoon – work the spoon over the bottom and corners of the pan to stop the mixture sticking. The curd is ready when it has thickened enough to coat the back of a spoon.', id: uniqueId() }, { name: 'Pour into the sterilised jars, seal, then store in the fridge for up to 2 weeks.', id: uniqueId() }],
-    kcal: '',
-    servings: '',
+    kcal: '342',
+    servings: '2',
     tags: [{ name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }, { name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }],
   }
 
@@ -40,31 +41,41 @@ class FormManager extends React.Component {
         proceed={this.handleClick}
         value={this.state.name}
         onChange={this.handleChange}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
     description: () => (
       <RecipeDescription
         proceed={this.handleClick}
         onChange={this.handleChange}
         value={this.state.description}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
-    img: () => (
+    images: () => (
       <RecipeImages
         images={this.state.images}
         onChange={this.addImage}
         proceed={this.handleClick}
         updateList={this.updateList}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
     ingridients: () => (
       <RecipeIngridients
         ingridients={this.state.ingridients}
         proceed={this.handleClick}
         updateList={this.updateList}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
     directions: () => (
       <RecipeDirections
         directions={this.state.directions}
         updateList={this.updateList}
         proceed={this.handleClick}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
     info: () => (
       <RecipeAdditionalInfo
@@ -72,6 +83,8 @@ class FormManager extends React.Component {
         servings={this.state.servings}
         onChange={this.handleChange}
         proceed={this.handleClick}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />
     ),
     tags: () => (
@@ -79,6 +92,8 @@ class FormManager extends React.Component {
         tags={this.state.tags}
         proceed={this.handleClick}
         updateList={this.updateList}
+        isEditing={this.state.isEditing}
+        finishEditing={this.finishEditing}
       />),
     preview: () => (
       <RecipePreview
@@ -90,7 +105,23 @@ class FormManager extends React.Component {
         kcal={this.state.kcal}
         servings={this.state.servings}
         tags={this.state.tags}
+        editSection={this.editSection}
       />)
+  }
+
+  finishEditing = () => {
+    const preview = this.state.steps.findIndex(step => step === 'preview');
+    this.setState({
+      currentStepNum: preview
+    });
+  }
+
+  editSection = (id) => {
+    const section = this.state.steps.findIndex(step => step === id);
+    this.setState({
+      isEditing: true,
+      currentStepNum: section
+    });
   }
 
   updateList = (newArr, id) => {

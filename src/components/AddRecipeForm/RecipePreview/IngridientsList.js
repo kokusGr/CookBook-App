@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MdEdit from 'react-icons/lib/md/edit';
 import ListTitle from './ListTitle';
 import Section from './Section';
-import Button from '../../common/Button';
 import ListItem from '../ListItem';
 
 const List = styled.ul`
@@ -12,15 +10,11 @@ const List = styled.ul`
 `;
 
 const StyledIngridientList = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
-const IngridientsList = ({ ingridients }) => (
-  <Section>
-    <Button edit>
-      <i><MdEdit /></i>
-      <span>Edit</span>
-    </Button>
+const IngridientsList = ({ ingridients, editSection }) => (
+  <Section editSection={editSection} id="ingridients">
     <StyledIngridientList>
       <ListTitle>Ingridients</ListTitle>
       <List>
@@ -37,8 +31,9 @@ const IngridientsList = ({ ingridients }) => (
 IngridientsList.propTypes = {
   ingridients: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }))
+    name: PropTypes.string.isRequired
+  })),
+  editSection: PropTypes.func.isRequired
 };
 
 export default IngridientsList;

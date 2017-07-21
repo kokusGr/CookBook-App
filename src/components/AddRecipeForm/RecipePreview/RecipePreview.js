@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import RecipeHeader from './RecipeHeader';
+import Name from './Name';
+import Description from './Description';
 import ImagesList from './ImageList';
 import IngridientsList from './IngridientsList';
 import DirectionsList from './DirectionsList';
-import RecipeFooter from './RecipeFooter';
+import InfoBox from './InfoBox';
+import TagsBox from './TagsBox';
 import FormSection from '../FormSection';
 import Heading from '../../common/Heading';
 import Button from '../../common/Button';
@@ -16,16 +18,18 @@ const StyledPreview = styled.div`
   padding-top: 2.25rem;
 `;
 
-const RecipePreview = ({ name, description, images, ingridients, directions, kcal, servings, tags }) => (
+const RecipePreview = ({ name, description, images, ingridients, directions, kcal, servings, tags, editSection }) => (
   <FormSection>
     <Heading>Here Is Your New Recipe</Heading>
     <Heading subheading>Please check if everything is OK</Heading>
     <StyledPreview>
-      <RecipeHeader name={name} description={description} />
-      <ImagesList images={images} />
-      <IngridientsList ingridients={ingridients} />
-      <DirectionsList directions={directions} />
-      <RecipeFooter kcal={kcal} servings={servings} tags={tags} />
+      <Name name={name} editSection={editSection} />
+      <Description description={description} editSection={editSection} />
+      <ImagesList images={images} editSection={editSection} />
+      <IngridientsList ingridients={ingridients} editSection={editSection} />
+      <DirectionsList directions={directions} editSection={editSection} />
+      <InfoBox kcal={kcal} servings={servings} editSection={editSection} />
+      <TagsBox tags={tags} editSection={editSection} />
     </StyledPreview>
     <Button next primary>Save</Button>
   </FormSection>
@@ -52,6 +56,7 @@ RecipePreview.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  editSection: PropTypes.func.isRequired
 };
 
 export default RecipePreview;

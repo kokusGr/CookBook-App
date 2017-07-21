@@ -50,7 +50,7 @@ class RecipeDirections extends React.Component {
   }
 
   render() {
-    const { directions, proceed } = this.props;
+    const { directions, proceed, isEditing, finishEditing } = this.props;
     return (
       <FormSection>
         <Heading>Please Tell Us How You Did It</Heading>
@@ -78,7 +78,8 @@ class RecipeDirections extends React.Component {
             </ListItem>
           ))}
         </OrderedList>
-        <Button next primary onClick={proceed}>Proceed</Button>
+        {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
+        {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
       </FormSection>
     );
   }
@@ -90,7 +91,9 @@ RecipeDirections.propTypes = {
     name: PropTypes.string
   })).isRequired,
   proceed: PropTypes.func.isRequired,
-  updateList: PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeDirections;
