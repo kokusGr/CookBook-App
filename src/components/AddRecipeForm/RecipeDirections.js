@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import MdClear from 'react-icons/lib/md/clear';
-import FormSection from './FormSection';
-import Heading from '../common/Heading';
 import Button from '../common/Button';
 import FlexBox from '../common/FlexBox';
 import Label from './Label';
 import TextInput from './TextInput';
 import ListItem from './ListItem';
+import Heading from '../common/Heading';
 import IconCircle from '../common/IconCircle';
 import uniqueId from '../../utils/uniqueId';
 
@@ -50,9 +49,9 @@ class RecipeDirections extends React.Component {
   }
 
   render() {
-    const { directions, proceed, isEditing, finishEditing } = this.props;
+    const { directions } = this.props;
     return (
-      <FormSection>
+      <div>
         <Heading>Please Tell Us How You Did It</Heading>
         <Label hidden htmlFor="newDirection">Directions</Label>
         <FlexBox>
@@ -78,9 +77,7 @@ class RecipeDirections extends React.Component {
             </ListItem>
           ))}
         </OrderedList>
-        {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
-        {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
-      </FormSection>
+      </div>
     );
   }
 }
@@ -90,10 +87,7 @@ RecipeDirections.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string
   })).isRequired,
-  proceed: PropTypes.func.isRequired,
   updateList: PropTypes.func.isRequired,
-  isEditing: PropTypes.bool.isRequired,
-  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeDirections;

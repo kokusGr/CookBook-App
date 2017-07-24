@@ -35,7 +35,7 @@ const style = {
 
   next: css`
     background-color: ${props => props.theme.colors.mainBlack};
-    margin: 1.2rem 0 0;
+    margin: 1.2rem .8rem 0;
   `,
 
   add: css`

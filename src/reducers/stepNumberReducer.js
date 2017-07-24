@@ -1,6 +1,6 @@
-import { NEXT_STEP, PREV_STEP } from '../actionCreators/actionTypes';
+import { NEXT_STEP, PREV_STEP } from '../constants/actionTypes';
 
-const newRecipeReducer = (state = 0, action) => {
+const stepNumberReducer = (state = 0, action) => {
   switch (action.type) {
     case NEXT_STEP:
       return state + 1;
@@ -13,4 +13,4 @@ const newRecipeReducer = (state = 0, action) => {
   }
 };
 
-export default newRecipeReducer;
+export default stepNumberReducer;

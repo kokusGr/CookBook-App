@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import RecipePreview from './RecipePreview/RecipePreview';
 import RecipeName from './RecipeName';
 import RecipeImages from './RecipeImages';
@@ -8,12 +10,13 @@ import RecipeDirections from './RecipeDirections';
 import RecipeAdditionalInfo from './RecipeAdditionalInfo';
 import RecipeTags from './RecipeTags';
 import uniqueId from '../../utils/uniqueId';
+import { nextStep, prevStep } from '../../actionCreators/actions';
+import FormSection from './FormSection';
+import getSteps from '../../constants/steps';
 
 class FormManager extends React.Component {
   state = {
     isEditing: false,
-    currentStepNum: 0,
-    steps: ['name', 'description', 'images', 'ingridients', 'directions', 'info', 'tags', 'preview'],
     name: 'Pizza',
     description: 'Best ever!',
     images: [
@@ -38,62 +41,41 @@ class FormManager extends React.Component {
   formTable = {
     name: () => (
       <RecipeName
-        proceed={this.handleClick}
         value={this.state.name}
         onChange={this.handleChange}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     description: () => (
       <RecipeDescription
-        proceed={this.handleClick}
         onChange={this.handleChange}
         value={this.state.description}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     images: () => (
       <RecipeImages
         images={this.state.images}
         onChange={this.addImage}
-        proceed={this.handleClick}
         updateList={this.updateList}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     ingridients: () => (
       <RecipeIngridients
         ingridients={this.state.ingridients}
-        proceed={this.handleClick}
         updateList={this.updateList}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     directions: () => (
       <RecipeDirections
         directions={this.state.directions}
         updateList={this.updateList}
-        proceed={this.handleClick}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     info: () => (
       <RecipeAdditionalInfo
         kcal={this.state.kcal}
         servings={this.state.servings}
         onChange={this.handleChange}
-        proceed={this.handleClick}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />
     ),
     tags: () => (
       <RecipeTags
         tags={this.state.tags}
-        proceed={this.handleClick}
         updateList={this.updateList}
-        isEditing={this.state.isEditing}
-        finishEditing={this.finishEditing}
       />),
     preview: () => (
       <RecipePreview
@@ -141,12 +123,6 @@ class FormManager extends React.Component {
     });
   }
 
-  handleClick = () => {
-    this.setState(prevState => ({
-      currentStepNum: prevState.currentStepNum + 1
-    }));
-  }
-
   addImage = (e) => {
     const srcFile = e.target.files[0];
     const src = window.URL.createObjectURL(srcFile);
@@ -162,14 +138,42 @@ class FormManager extends React.Component {
   }
 
   render() {
-    const currentStep = this.state.steps[this.state.currentStepNum];
+    const { nextStepConnect, stepNumber, prevStepConnect } = this.props;
+    const steps = getSteps();
+    const currentStep = steps[stepNumber];
     const form = this.getForm(currentStep);
     return (
       <div>
-        {form}
+        <FormSection
+          nextStep={nextStepConnect}
+          prevStep={prevStepConnect}
+          stepNumber={stepNumber}
+          steps={steps}
+        >
+          {form}
+        </FormSection>
       </div>
     );
   }
 }
 
-export default FormManager;
+FormManager.propTypes = {
+  stepNumber: PropTypes.number.isRequired,
+  nextStepConnect: PropTypes.func.isRequired,
+  prevStepConnect: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    stepNumber: state.stepNumber
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    nextStepConnect: () => dispatch(nextStep()),
+    prevStepConnect: () => dispatch(prevStep())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormManager);

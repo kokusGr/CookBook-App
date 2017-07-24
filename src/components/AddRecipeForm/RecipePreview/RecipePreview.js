@@ -8,7 +8,6 @@ import IngridientsList from './IngridientsList';
 import DirectionsList from './DirectionsList';
 import InfoBox from './InfoBox';
 import TagsBox from './TagsBox';
-import FormSection from '../FormSection';
 import Heading from '../../common/Heading';
 import Button from '../../common/Button';
 
@@ -19,8 +18,7 @@ const StyledPreview = styled.div`
 `;
 
 const RecipePreview = ({ name, description, images, ingridients, directions, kcal, servings, tags, editSection }) => (
-  <FormSection>
-    <Heading>Here Is Your New Recipe</Heading>
+  <div>
     <Heading subheading>Please check if everything is OK</Heading>
     <StyledPreview>
       <Name name={name} editSection={editSection} />
@@ -32,7 +30,7 @@ const RecipePreview = ({ name, description, images, ingridients, directions, kca
       <TagsBox tags={tags} editSection={editSection} />
     </StyledPreview>
     <Button next primary>Save</Button>
-  </FormSection>
+  </div>
 );
 
 RecipePreview.propTypes = {

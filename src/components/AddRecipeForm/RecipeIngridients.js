@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MdClear from 'react-icons/lib/md/clear';
-import FormSection from './FormSection';
-import Heading from '../common/Heading';
 import Button from '../common/Button';
 import Label from './Label';
 import TextInput from './TextInput';
 import FlexBox from '../common/FlexBox';
 import ListItem from './ListItem';
+import Heading from '../common/Heading';
 import IconCircle from '../common/IconCircle';
 import uniqueId from '../../utils/uniqueId';
 
@@ -46,9 +45,9 @@ class RecipeIngridients extends React.Component {
   }
 
   render() {
-    const { ingridients, proceed, isEditing, finishEditing } = this.props;
+    const { ingridients } = this.props;
     return (
-      <FormSection>
+      <div>
         <Heading>Please Add Needed Ingridients</Heading>
         <FlexBox>
           <Label hidden htmlFor="ingridients">Ingridients</Label>
@@ -75,9 +74,7 @@ class RecipeIngridients extends React.Component {
             </ListItem>
           ))}
         </ul>
-        {!isEditing && <Button next primary onClick={proceed}>Proceed</Button>}
-        {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
-      </FormSection>
+      </div>
     );
   }
 }
@@ -87,10 +84,7 @@ RecipeIngridients.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string
   })).isRequired,
-  proceed: PropTypes.func.isRequired,
   updateList: PropTypes.func.isRequired,
-  isEditing: PropTypes.bool.isRequired,
-  finishEditing: PropTypes.func.isRequired
 };
 
 export default RecipeIngridients;
