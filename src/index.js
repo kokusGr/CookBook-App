@@ -1,12 +1,18 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 import App from './components/App';
+
+const store = configureStore();
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <Component />
+      <Provider store={store}>
+        <Component />
+      </Provider>
     </AppContainer>,
     document.getElementById('app')
   );
@@ -19,7 +25,9 @@ if (module.hot) {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
     ReactDOM.render(
       <AppContainer>
-        <NextApp />
+        <Provider store={store}>
+          <NextApp />
+        </Provider>
       </AppContainer>,
       document.getElementById('app')
     );

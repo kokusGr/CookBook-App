@@ -21,7 +21,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "redux": "^3.7.1",
+    "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.0"
   },
@@ -52,6 +52,7 @@
     "jsdom": "^11.0.0",
     "mocha": "^3.4.2",
     "react-test-renderer": "^15.6.1",
+    "redux-immutable-state-invariant": "^2.0.0",
     "url-loader": "^0.5.9",
     "webpack": "^3.0.0",
     "webpack-dev-middleware": "^1.10.2",
