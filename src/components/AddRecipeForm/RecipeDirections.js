@@ -17,19 +17,28 @@ const OrderedList = styled.ol`
 
 class RecipeDirections extends React.Component {
   state = {
+    directions: this.props.directions || [],
     newDirection: ''
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.directions !== nextProps.directions) {
+      this.setState({
+        directions: nextProps.directions
+      });
+    }
+  }
+
   addNewDirection = () => {
-    const name = this.state.newDirection.trim();
-    if (name.length > 0) {
-      const directions = this.props.directions.slice('');
+    const text = this.state.newDirection.trim();
+    if (text.length > 0) {
+      const directions = this.state.directions.slice('');
       const newDirection = {
         id: uniqueId(),
-        name
+        text
       };
       directions.push(newDirection);
-      this.props.updateList(directions, 'directions');
+      this.props.onSave(directions, 'directions');
       this.setState({
         newDirection: ''
       });
@@ -37,9 +46,16 @@ class RecipeDirections extends React.Component {
   }
 
   deleteDirection = (e) => {
-    const newArr = this.props.directions
+    const newArr = this.state.directions
       .filter(direction => direction.id !== e.currentTarget.id);
-    this.props.updateList(newArr, 'directions');
+    this.props.onSave(newArr, 'directions');
+  }
+
+  handleKeyPress = (e) => {
+    if (e.which === 13) {
+      e.preventDefault();
+      this.addNewDirection();
+    }
   }
 
   handleChange = (e) => {
@@ -49,7 +65,7 @@ class RecipeDirections extends React.Component {
   }
 
   render() {
-    const { directions } = this.props;
+    const { directions } = this.state;
     return (
       <div>
         <Heading>Please Tell Us How You Did It</Heading>
@@ -61,6 +77,7 @@ class RecipeDirections extends React.Component {
             placeholder="First you have to smile!"
             id="newDirection"
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
           <Button
             noMargin add //eslint-disable-line
@@ -73,7 +90,7 @@ class RecipeDirections extends React.Component {
               <IconCircle leftCenter small id={direction.id} onClick={this.deleteDirection}>
                 <MdClear />
               </IconCircle>
-              {direction.name}
+              {direction.text}
             </ListItem>
           ))}
         </OrderedList>
@@ -85,9 +102,9 @@ class RecipeDirections extends React.Component {
 RecipeDirections.propTypes = {
   directions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
-    name: PropTypes.string
-  })).isRequired,
-  updateList: PropTypes.func.isRequired,
+    text: PropTypes.string
+  })),
+  onSave: PropTypes.func.isRequired,
 };
 
 export default RecipeDirections;

@@ -17,8 +17,6 @@ import getSteps from '../../constants/steps';
 class FormManager extends React.Component {
   state = {
     isEditing: false,
-    ingridients: [{ name: 'Chicken breast', id: uniqueId() }, { name: 'Butter', id: uniqueId() }, { name: 'Bread crumbs', id: uniqueId() }, { name: 'Spinach', id: uniqueId() }],
-    directions: [{ name: 'To sterilise jars, preheat oven to 140C/120C Fan/Gas 1. Wash 3 standard jam jars in hot, soapy water and rinse. Remove any rubber seals then heat in the oven for 30 mins.', id: uniqueId() }, { name: 'Blitz the peaches and lemon juice in a processor until smooth. Blend in the sugar, eggs and yolks.', id: uniqueId() }, { name: 'Melt the butter in a pan then whisk in the peach mixture. Heat on low for 30 mins, stirring with a wooden spoon – work the spoon over the bottom and corners of the pan to stop the mixture sticking. The curd is ready when it has thickened enough to coat the back of a spoon.', id: uniqueId() }, { name: 'Pour into the sterilised jars, seal, then store in the fridge for up to 2 weeks.', id: uniqueId() }],
     kcal: '342',
     servings: '2',
     tags: [{ name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }, { name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }],
@@ -47,17 +45,16 @@ class FormManager extends React.Component {
       <RecipeImages
         images={this.props.newRecipe.images}
         onSave={this.props.updateNewRecipeConnect}
-        updateList={this.updateList}
       />),
     ingridients: () => (
       <RecipeIngridients
-        ingridients={this.state.ingridients}
-        updateList={this.updateList}
+        ingridients={this.props.newRecipe.ingridients}
+        onSave={this.props.updateNewRecipeConnect}
       />),
     directions: () => (
       <RecipeDirections
-        directions={this.state.directions}
-        updateList={this.updateList}
+        directions={this.props.newRecipe.directions}
+        onSave={this.props.updateNewRecipeConnect}
       />),
     info: () => (
       <RecipeAdditionalInfo
@@ -148,6 +145,14 @@ FormManager.propTypes = {
       id: PropTypes.string,
       src: PropTypes.string
     })),
+    ingridients: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    })),
+    directions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    }))
   }).isRequired,
   updateNewRecipeConnect: PropTypes.func.isRequired
 };

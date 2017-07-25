@@ -13,29 +13,32 @@ import uniqueId from '../../utils/uniqueId';
 class RecipeIngridients extends React.Component {
 
   state = {
+    ingridients: this.props.ingridients || [],
     newIngridient: ''
   }
 
-  addNewIngridient = () => {
-    const name = this.state.newIngridient.trim();
-    if (name.length > 0) {
-      const ingridients = this.props.ingridients.slice('');
-      const newIngridient = {
-        id: uniqueId(),
-        name
-      };
-      ingridients.push(newIngridient);
-      this.props.updateList(ingridients, 'ingridients');
+  componentWillReceiveProps(nextProps) {
+    if (this.props.ingridients !== nextProps.ingridients) {
       this.setState({
-        newIngridient: ''
+        ingridients: nextProps.ingridients
       });
     }
   }
 
-  deleteIngridient = (e) => {
-    const newArr = this.props.ingridients
-      .filter(ingridient => ingridient.id !== e.currentTarget.id);
-    this.props.updateList(newArr, 'ingridients');
+  addNewIngridient = () => {
+    const text = this.state.newIngridient.trim();
+    if (text.length > 0) {
+      const ingridients = this.state.ingridients.slice('');
+      const newIngridient = {
+        id: uniqueId(),
+        text
+      };
+      ingridients.push(newIngridient);
+      this.props.onSave(ingridients, 'ingridients');
+      this.setState({
+        newIngridient: ''
+      });
+    }
   }
 
   handleChange = (e) => {
@@ -44,8 +47,21 @@ class RecipeIngridients extends React.Component {
     });
   }
 
+  deleteIngridient = (e) => {
+    const newArr = this.state.ingridients
+      .filter(ingridient => ingridient.id !== e.currentTarget.id);
+    this.props.onSave(newArr, 'ingridients');
+  }
+
+  handleKeyPress = (e) => {
+    if (e.which === 13) {
+      e.preventDefault();
+      this.addNewIngridient();
+    }
+  }
+
   render() {
-    const { ingridients } = this.props;
+    const { ingridients } = this.state;
     return (
       <div>
         <Heading>Please Add Needed Ingridients</Heading>
@@ -57,6 +73,7 @@ class RecipeIngridients extends React.Component {
             id="newIngridient"
             value={this.state.newIngridient}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
           <Button
             noMargin add // eslint-disable-line
@@ -70,7 +87,7 @@ class RecipeIngridients extends React.Component {
               <IconCircle leftCenter small id={ingridient.id} onClick={this.deleteIngridient}>
                 <MdClear />
               </IconCircle>
-              {ingridient.name}
+              {ingridient.text}
             </ListItem>
           ))}
         </ul>
@@ -82,9 +99,9 @@ class RecipeIngridients extends React.Component {
 RecipeIngridients.propTypes = {
   ingridients: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
-    name: PropTypes.string
-  })).isRequired,
-  updateList: PropTypes.func.isRequired,
+    text: PropTypes.string
+  })),
+  onSave: PropTypes.func.isRequired,
 };
 
 export default RecipeIngridients;
