@@ -17,11 +17,6 @@ import getSteps from '../../constants/steps';
 class FormManager extends React.Component {
   state = {
     isEditing: false,
-    description: 'Best ever!',
-    images: [
-      { src: 'https://static.pexels.com/photos/381198/pexels-photo-381198.jpeg', id: uniqueId() },
-      { src: 'https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg', id: uniqueId() }
-    ],
     ingridients: [{ name: 'Chicken breast', id: uniqueId() }, { name: 'Butter', id: uniqueId() }, { name: 'Bread crumbs', id: uniqueId() }, { name: 'Spinach', id: uniqueId() }],
     directions: [{ name: 'To sterilise jars, preheat oven to 140C/120C Fan/Gas 1. Wash 3 standard jam jars in hot, soapy water and rinse. Remove any rubber seals then heat in the oven for 30 mins.', id: uniqueId() }, { name: 'Blitz the peaches and lemon juice in a processor until smooth. Blend in the sugar, eggs and yolks.', id: uniqueId() }, { name: 'Melt the butter in a pan then whisk in the peach mixture. Heat on low for 30 mins, stirring with a wooden spoon – work the spoon over the bottom and corners of the pan to stop the mixture sticking. The curd is ready when it has thickened enough to coat the back of a spoon.', id: uniqueId() }, { name: 'Pour into the sterilised jars, seal, then store in the fridge for up to 2 weeks.', id: uniqueId() }],
     kcal: '342',
@@ -45,13 +40,13 @@ class FormManager extends React.Component {
       />),
     description: () => (
       <RecipeDescription
-        onChange={this.handleChange}
-        value={this.state.description}
+        onSave={this.props.updateNewRecipeConnect}
+        description={this.props.newRecipe.description}
       />),
     images: () => (
       <RecipeImages
-        images={this.state.images}
-        onChange={this.addImage}
+        images={this.props.newRecipe.images}
+        onSave={this.props.updateNewRecipeConnect}
         updateList={this.updateList}
       />),
     ingridients: () => (
@@ -122,20 +117,6 @@ class FormManager extends React.Component {
     });
   }
 
-  addImage = (e) => {
-    const srcFile = e.target.files[0];
-    const src = window.URL.createObjectURL(srcFile);
-    const newImg = {
-      id: uniqueId(),
-      src
-    };
-    const images = this.state.images.slice('');
-    images.push(newImg);
-    this.setState({
-      images
-    });
-  }
-
   render() {
     const { nextStepConnect, stepNumber, prevStepConnect } = this.props;
     const steps = getSteps();
@@ -161,7 +142,12 @@ FormManager.propTypes = {
   nextStepConnect: PropTypes.func.isRequired,
   prevStepConnect: PropTypes.func.isRequired,
   newRecipe: PropTypes.shape({
-    name: PropTypes.string
+    name: PropTypes.string,
+    description: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      src: PropTypes.string
+    })),
   }).isRequired,
   updateNewRecipeConnect: PropTypes.func.isRequired
 };

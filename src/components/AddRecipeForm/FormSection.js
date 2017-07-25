@@ -22,10 +22,10 @@ const StyledFormSection = styled.div`
 const FormSection = ({ stepNumber, nextStep, prevStep, steps, ...props }) => (
   <StyledFormSection>
     {props.children}
-    {stepNumber < steps.length - 1
-      && <Button next primary onClick={nextStep}>Next</Button>}
     {stepNumber > 0
       && <Button next primary onClick={prevStep}>Back</Button>}
+    {stepNumber < steps.length - 1
+      && <Button next primary onClick={nextStep}>Next</Button>}
     {/* {isEditing && <Button next primary onClick={finishEditing}>Save</Button>} */}
   </StyledFormSection>
 );

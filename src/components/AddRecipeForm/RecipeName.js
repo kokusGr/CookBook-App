@@ -10,7 +10,7 @@ class RecipeName extends React.Component {
   }
 
   handleChange = (e) => {
-    const val = e.currentTarget.value.trim();
+    const val = e.currentTarget.value;
     this.setState({
       name: val
     });

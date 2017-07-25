@@ -4,17 +4,36 @@ import Heading from '../common/Heading';
 import TextInput from './TextInput';
 import Label from './Label';
 
-const RecipeDescription = ({ value, onChange }) => (
-  <div>
-    <Heading>Please Provide Short Description</Heading>
-    <Label hidden htmlFor="description">Recipe Description</Label>
-    <TextInput box id="description" placeholder="This is the best dish I have ever tasted!" value={value} onChange={onChange} />
-  </div>
-);
+class RecipeDescription extends React.Component {
+  state = {
+    description: this.props.description || ''
+  }
+
+  handleChange = (e) => {
+    const val = e.currentTarget.value;
+    this.setState({
+      description: val
+    });
+  }
+
+  handleSubmit = () => {
+    this.props.onSave(this.state.description, 'description');
+  }
+
+  render() {
+    return (
+      <div>
+        <Heading>Please Provide Short Description</Heading>
+        <Label hidden htmlFor="description">Recipe Description</Label>
+        <TextInput box id="description" placeholder="This is the best dish I have ever tasted!" value={this.state.description} onChange={this.handleChange} onBlur={this.handleSubmit} />
+      </div>
+    );
+  }
+}
 
 RecipeDescription.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  onSave: PropTypes.func.isRequired
 };
 
 export default RecipeDescription;
