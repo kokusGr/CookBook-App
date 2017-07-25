@@ -11,3 +11,11 @@ export function prevStep() {
     type: actions.PREV_STEP
   };
 }
+
+export function updateNewRecipe(newValue, field) {
+  return {
+    type: actions.UPDATE_NEW_RECIPE,
+    newValue,
+    field
+  };
+}

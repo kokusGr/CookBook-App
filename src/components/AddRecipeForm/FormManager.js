@@ -10,14 +10,13 @@ import RecipeDirections from './RecipeDirections';
 import RecipeAdditionalInfo from './RecipeAdditionalInfo';
 import RecipeTags from './RecipeTags';
 import uniqueId from '../../utils/uniqueId';
-import { nextStep, prevStep } from '../../actionCreators/actions';
+import * as actions from '../../actionCreators/actions';
 import FormSection from './FormSection';
 import getSteps from '../../constants/steps';
 
 class FormManager extends React.Component {
   state = {
     isEditing: false,
-    name: 'Pizza',
     description: 'Best ever!',
     images: [
       { src: 'https://static.pexels.com/photos/381198/pexels-photo-381198.jpeg', id: uniqueId() },
@@ -41,8 +40,8 @@ class FormManager extends React.Component {
   formTable = {
     name: () => (
       <RecipeName
-        value={this.state.name}
-        onChange={this.handleChange}
+        name={this.props.newRecipe.name}
+        onSave={this.props.updateNewRecipeConnect}
       />),
     description: () => (
       <RecipeDescription
@@ -160,19 +159,25 @@ class FormManager extends React.Component {
 FormManager.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   nextStepConnect: PropTypes.func.isRequired,
-  prevStepConnect: PropTypes.func.isRequired
+  prevStepConnect: PropTypes.func.isRequired,
+  newRecipe: PropTypes.shape({
+    name: PropTypes.string
+  }).isRequired,
+  updateNewRecipeConnect: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    stepNumber: state.stepNumber
+    stepNumber: state.stepNumber,
+    newRecipe: state.newRecipe
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    nextStepConnect: () => dispatch(nextStep()),
-    prevStepConnect: () => dispatch(prevStep())
+    nextStepConnect: () => dispatch(actions.nextStep()),
+    prevStepConnect: () => dispatch(actions.prevStep()),
+    updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field))
   };
 }
 
