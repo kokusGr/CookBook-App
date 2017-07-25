@@ -17,8 +17,6 @@ import getSteps from '../../constants/steps';
 class FormManager extends React.Component {
   state = {
     isEditing: false,
-    kcal: '342',
-    servings: '2',
     tags: [{ name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }, { name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }],
   }
 
@@ -58,9 +56,9 @@ class FormManager extends React.Component {
       />),
     info: () => (
       <RecipeAdditionalInfo
-        kcal={this.state.kcal}
-        servings={this.state.servings}
-        onChange={this.handleChange}
+        kcal={this.props.newRecipe.kcal}
+        servings={this.props.newRecipe.servings}
+        onSave={this.props.updateNewRecipeConnect}
       />
     ),
     tags: () => (
@@ -152,7 +150,9 @@ FormManager.propTypes = {
     directions: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string
-    }))
+    })),
+    kcal: PropTypes.string,
+    servings: PropTypes.string
   }).isRequired,
   updateNewRecipeConnect: PropTypes.func.isRequired
 };
