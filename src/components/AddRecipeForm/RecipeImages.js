@@ -27,11 +27,19 @@ class RecipeImages extends React.Component {
     const images = this.state.images.slice('');
     images.push(newImg);
     this.props.onSave(images, 'images');
+    if (images.length === 1) {
+      this.props.selectMainImage(newImg);
+    }
   }
 
   deleteImages = (e) => {
     const newArr = this.state.images.filter(img => img.id !== e.currentTarget.id);
     this.props.onSave(newArr, 'images');
+  }
+
+  selectImage = (e) => {
+    const clickedImage = this.state.images.find(img => img.id === e.target.id);
+    this.props.selectMainImage(clickedImage);
   }
 
   render() {
@@ -40,7 +48,12 @@ class RecipeImages extends React.Component {
         <Heading>Please Add Some Images</Heading>
         <Label file htmlFor="img">Add new image</Label>
         <ImageInput onChange={this.handleChange} id="img" />
-        <ImagePreview images={this.state.images} handleClick={this.deleteImages} />
+        <ImagePreview
+          images={this.state.images}
+          handleClick={this.deleteImages}
+          selectImage={this.selectImage}
+          mainImage={this.props.mainImage}
+        />
       </div>
     );
   }
@@ -51,7 +64,12 @@ RecipeImages.propTypes = {
     id: PropTypes.string,
     src: PropTypes.string
   })),
-  onSave: PropTypes.func.isRequired
+  mainImage: PropTypes.shape({
+    id: PropTypes.string,
+    src: PropTypes.string
+  }),
+  onSave: PropTypes.func.isRequired,
+  selectMainImage: PropTypes.func.isRequired
 };
 
 export default RecipeImages;

@@ -1,4 +1,4 @@
-import { SAVE_RECIPE } from '../constants/actionTypes';
+import { SAVE_RECIPE, LOAD_ALL_RECIPES } from '../constants/actionTypes';
 
 const recipesReducer = (state = [], action) => {
   switch (action.type) {
@@ -7,6 +7,8 @@ const recipesReducer = (state = [], action) => {
         ...state,
         action.recipe
       ];
+    case LOAD_ALL_RECIPES:
+      return action.recipes;
     default:
       return state;
   }

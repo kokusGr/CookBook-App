@@ -39,3 +39,17 @@ export function saveRecipe(recipe) {
     recipe
   };
 }
+
+export function loadAllRecipes(recipes) {
+  return {
+    type: actions.LOAD_ALL_RECIPES,
+    recipes
+  };
+}
+
+export function selectMainImage(clickedImage) {
+  return {
+    type: actions.SELECT_MAIN_IMAGE,
+    clickedImage
+  };
+}

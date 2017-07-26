@@ -11,7 +11,7 @@ const App = () =>
     <ThemeProvider theme={theme}>
       <div>
         <Header />
-        {/* <RecipesListPage /> */}
+        <RecipesListPage />
         <AddRecipeFormPage />
       </div>
     </ThemeProvider>

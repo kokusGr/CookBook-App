@@ -24,7 +24,11 @@ const RecipePreview = ({ newRecipe, editSection, saveRecipe }) => (
       <Name name={newRecipe.name} editSection={editSection} />
       <Description description={newRecipe.description} editSection={editSection} />
       {newRecipe.images.length > 0
-        && <ImagesList images={newRecipe.images} editSection={editSection} />}
+        && <ImagesList
+          images={newRecipe.images}
+          editSection={editSection}
+          mainImage={newRecipe.mainImage}
+        />}
       <IngridientsList ingridients={newRecipe.ingridients} editSection={editSection} />
       <DirectionsList directions={newRecipe.directions} editSection={editSection} />
       {(newRecipe.kcal.length > 0 || newRecipe.servings.length > 0)

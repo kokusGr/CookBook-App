@@ -38,6 +38,8 @@ class FormManager extends React.Component {
       <RecipeImages
         images={this.props.newRecipe.images}
         onSave={this.props.updateNewRecipeConnect}
+        selectMainImage={this.props.selectMainImageConnect}
+        mainImage={this.props.newRecipe.mainImage}
       />),
     ingridients: () => (
       <RecipeIngridients
@@ -106,6 +108,10 @@ FormManager.propTypes = {
       id: PropTypes.string,
       src: PropTypes.string
     })),
+    mainImage: PropTypes.shape({
+      id: PropTypes.string,
+      src: PropTypes.string
+    }),
     ingridients: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string
@@ -125,7 +131,8 @@ FormManager.propTypes = {
   editSectionConnect: PropTypes.func.isRequired,
   isEditing: PropTypes.bool.isRequired,
   finishEditingConnect: PropTypes.func.isRequired,
-  saveRecipeConnect: PropTypes.func.isRequired
+  saveRecipeConnect: PropTypes.func.isRequired,
+  selectMainImageConnect: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -143,7 +150,8 @@ function mapDispatchToProps(dispatch) {
     updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field)),
     editSectionConnect: stepNumber => dispatch(actions.editSection(stepNumber)),
     finishEditingConnect: () => dispatch(actions.finishEditing()),
-    saveRecipeConnect: recipe => dispatch(actions.saveRecipe(recipe))
+    saveRecipeConnect: recipe => dispatch(actions.saveRecipe(recipe)),
+    selectMainImageConnect: clickedImage => dispatch(actions.selectMainImage(clickedImage))
   };
 }
 

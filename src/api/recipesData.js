@@ -1,28 +1,30 @@
-const recipes = [
+const data = [
   {
+    id: '213',
+    name: 'Yummy Burger',
+    description: 'The most delicious american classic',
+    mainImage: { id: '27182218', src: 'https://static.pexels.com/photos/496970/pexels-photo-496970.jpeg' }
+  },
+  {
+    id: '21321',
+    name: 'Burger ala Kokus',
+    description: 'Best Burger EU',
+    mainImage: { id: '271828', src: 'https://static.pexels.com/photos/59943/pexels-photo-59943.jpeg' }
+  },
+  {
+    id: '21321212',
     name: 'Pizza',
-    id: '1',
-    img: './pizza.jpeg',
-    desc: 'True itallian recipe. Crusty, thin, quick. Perfect for every evening!'
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    mainImage: { id: '2776528', src: 'https://static.pexels.com/photos/162918/pizza-cheese-margarita-homemade-162918.jpeg' }
   },
   {
-    name: 'Burger',
-    id: '2',
-    img: './burger.jpeg',
-    desc: 'American classic, with a touch of polish cusine. Homemade bun with a special sauce is a must try.'
-  },
-  {
+    id: '21231112',
     name: 'Chocolate Cake',
-    id: '3',
-    img: './chocolate-cake.jpeg',
-    desc: 'Dark, lucious, sexy. Do I really have to say anything?'
-  },
-  {
-    name: 'Shish Kebab',
-    id: '4',
-    img: './shish-kebab.jpeg',
-    desc: 'Exotic dish that will make you dream about foreign adventure. Perfect combination of flavours!'
+    description: 'Creamy, velvety, dark. Do I need to say more?Creamy, velvety, dark. Do I need to say more?Creamy, velvety, dark. Do I need to say more?Creamy, velvety, dark. Do I need to say more?',
+    mainImage: { id: '124677', src: 'https://static.pexels.com/photos/132694/pexels-photo-132694.jpeg' }
   }
 ];
 
-export default recipes;
+const getAllRecipes = () => data;
+
+export default getAllRecipes;
