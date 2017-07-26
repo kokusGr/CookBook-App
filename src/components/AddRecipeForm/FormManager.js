@@ -65,43 +65,16 @@ class FormManager extends React.Component {
       <RecipePreview
         newRecipe={this.props.newRecipe}
         editSection={this.props.editSectionConnect}
+        saveRecipe={this.props.saveRecipeConnect}
       />)
   }
 
-  finishEditing = () => {
-    const preview = this.state.steps.findIndex(step => step === 'preview');
-    this.setState({
-      currentStepNum: preview
-    });
-  }
-
-  editSection = (id) => {
-    const section = this.state.steps.findIndex(step => step === id);
-    this.setState({
-      isEditing: true,
-      currentStepNum: section
-    });
-  }
-
-  updateList = (newArr, id) => {
-    const state = Object.assign({}, { ...this.state });
-    state[id] = newArr;
-    this.setState({
-      ...state
-    });
-  }
-
-  handleChange = (e) => {
-    const field = e.target.id;
-    const state = Object.assign({}, { ...this.state });
-    state[field] = e.target.value;
-    this.setState({
-      ...state
-    });
-  }
-
   render() {
-    const { nextStepConnect, stepNumber, prevStepConnect, isEditing, finishEditing } = this.props;
+    const {
+      nextStepConnect,
+      stepNumber, prevStepConnect,
+      isEditing,
+      finishEditingConnect } = this.props;
     const steps = getSteps();
     const currentStep = steps[stepNumber];
     const form = this.getForm(currentStep);
@@ -113,7 +86,7 @@ class FormManager extends React.Component {
           stepNumber={stepNumber}
           steps={steps}
           isEditing={isEditing}
-          finishEditing={finishEditing}
+          finishEditing={finishEditingConnect}
         >
           {form}
         </FormSection>
@@ -151,7 +124,8 @@ FormManager.propTypes = {
   updateNewRecipeConnect: PropTypes.func.isRequired,
   editSectionConnect: PropTypes.func.isRequired,
   isEditing: PropTypes.bool.isRequired,
-  finishEditing: PropTypes.func.isRequired
+  finishEditingConnect: PropTypes.func.isRequired,
+  saveRecipeConnect: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -168,7 +142,8 @@ function mapDispatchToProps(dispatch) {
     prevStepConnect: () => dispatch(actions.prevStep()),
     updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field)),
     editSectionConnect: stepNumber => dispatch(actions.editSection(stepNumber)),
-    finishEditing: () => dispatch(actions.finishEditing())
+    finishEditingConnect: () => dispatch(actions.finishEditing()),
+    saveRecipeConnect: recipe => dispatch(actions.saveRecipe(recipe))
   };
 }
 

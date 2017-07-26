@@ -32,3 +32,10 @@ export function finishEditing() {
     type: actions.FINISH_EDITING
   };
 }
+
+export function saveRecipe(recipe) {
+  return {
+    type: actions.SAVE_RECIPE,
+    recipe
+  };
+}

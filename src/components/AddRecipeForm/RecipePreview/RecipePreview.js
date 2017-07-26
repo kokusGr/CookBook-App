@@ -17,7 +17,7 @@ const StyledPreview = styled.div`
   padding-top: 2.25rem;
 `;
 
-const RecipePreview = ({ newRecipe, editSection }) => (
+const RecipePreview = ({ newRecipe, editSection, saveRecipe }) => (
   <div>
     <Heading subheading>Please check if everything is OK</Heading>
     <StyledPreview>
@@ -36,7 +36,7 @@ const RecipePreview = ({ newRecipe, editSection }) => (
       {newRecipe.tags.length > 0
         && <TagsBox tags={newRecipe.tags} editSection={editSection} />}
     </StyledPreview>
-    <Button next primary>Save</Button>
+    <Button next primary onClick={() => saveRecipe(newRecipe)}>Save</Button>
   </div>
 );
 
@@ -63,7 +63,8 @@ RecipePreview.propTypes = {
       text: PropTypes.string
     }))
   }),
-  editSection: PropTypes.func.isRequired
+  editSection: PropTypes.func.isRequired,
+  saveRecipe: PropTypes.func.isRequired
 };
 
 export default RecipePreview;
