@@ -7,7 +7,7 @@ const style = {
     color: #FFF;
     border: none;
     font-size: 1rem;
-    padding: 10px;
+    padding: 0.875rem;
     border-radius: 3px;
     letter-spacing: .04rem;
 
@@ -26,11 +26,7 @@ const style = {
 
   primary: css`
     font-size: 1.4rem;
-    padding: 13px 20px;
-  `,
-
-  success: css`
-    background-color: green;
+    padding: 0.875rem 1.25rem;
   `,
 
   next: css`
@@ -60,7 +56,6 @@ const style = {
 const Button = styled.button`
   ${style.default}
   ${props => (props.primary ? style.primary : null)}
-  ${props => (props.success ? style.success : null)}
   ${props => (props.noMargin ? style.noMargin : null)}
   ${props => (props.next ? style.next : null)}
   ${props => (props.add ? style.add : null)}

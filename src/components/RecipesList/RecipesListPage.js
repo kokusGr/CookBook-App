@@ -4,19 +4,19 @@ import TopBox from './TopBox';
 import Button from '../common/Button';
 import Wrapper from '../common/Wrapper';
 import PageSection from '../common/PageSection';
-import RecipesList from './RecipesList';
+import RecipesListManager from './RecipesListManager';
 
 const RecipesListPage = () => (
   <div>
     <TopBox>
       <Wrapper>
         <Button noMargin>Add Recipe</Button>
-        <Heading float="right" noMargin>Recipes List Page</Heading>
+        <Heading float="right" noMargin orange>Recipes List Page</Heading>
       </Wrapper>
     </TopBox>
     <PageSection>
       <Wrapper>
-        <RecipesList />
+        <RecipesListManager />
       </Wrapper>
     </PageSection>
   </div>

@@ -17,6 +17,10 @@ const style = {
     font-size: 1.2rem;
     font-weight: 300;
     font-style: italic;
+  `,
+
+  orange: css`
+    color: ${props => props.theme.colors.mainOrange};
   `
 };
 const Heading = styled.h2`
@@ -24,6 +28,7 @@ const Heading = styled.h2`
   ${props => (props.noMargin ? style.noMargin : null)}
   ${props => (props.tip ? style.tip : null)}
   ${props => (props.subheading ? style.subheading : null)}
+  ${props => (props.orange ? style.orange : null)}
 
 `;
 
