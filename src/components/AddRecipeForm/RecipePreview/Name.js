@@ -14,6 +14,7 @@ const Title = styled.h3`
 
 const Name = ({ name, editSection }) => (
   <Section editSection={editSection} id="name">
+    {name.length === 0 && <p>No recipe name!</p>}
     <Title>{name}</Title>
   </Section>
 );

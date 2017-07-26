@@ -19,3 +19,16 @@ export function updateNewRecipe(newValue, field) {
     field
   };
 }
+
+export function editSection(stepNumber) {
+  return {
+    type: actions.EDIT_SECTION,
+    stepNumber
+  };
+}
+
+export function finishEditing() {
+  return {
+    type: actions.FINISH_EDITING
+  };
+}

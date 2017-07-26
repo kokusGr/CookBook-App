@@ -14,6 +14,7 @@ const StyledDescription = styled.p`
 
 const Description = ({ description, editSection }) => (
   <Section editSection={editSection} id="description">
+    {description.length === 0 && <p>No recipe description!</p>}
     <StyledDescription>{description}</StyledDescription>
   </Section>
 );

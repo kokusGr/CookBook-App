@@ -19,11 +19,11 @@ const RecipeFooter = ({ kcal, servings, tags }) => (
 );
 
 RecipeFooter.propTypes = {
-  kcal: PropTypes.string.isRequired,
-  servings: PropTypes.string.isRequired,
+  kcal: PropTypes.string,
+  servings: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }))
 };
 

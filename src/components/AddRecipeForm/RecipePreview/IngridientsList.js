@@ -17,10 +17,11 @@ const IngridientsList = ({ ingridients, editSection }) => (
   <Section editSection={editSection} id="ingridients">
     <StyledIngridientList>
       <ListTitle>Ingridients</ListTitle>
+      {ingridients.length === 0 && <p>No ingridients!</p>}
       <List>
         {ingridients.map(ingridient => (
           <ListItem key={ingridient.id}>
-            {ingridient.name}
+            {ingridient.text}
           </ListItem>
         ))}
       </List>
@@ -30,9 +31,9 @@ const IngridientsList = ({ ingridients, editSection }) => (
 
 IngridientsList.propTypes = {
   ingridients: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })),
+    id: PropTypes.string,
+    text: PropTypes.string
+  })).isRequired,
   editSection: PropTypes.func.isRequired
 };
 

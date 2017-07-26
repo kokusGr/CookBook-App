@@ -17,43 +17,52 @@ const StyledPreview = styled.div`
   padding-top: 2.25rem;
 `;
 
-const RecipePreview = ({ name, description, images, ingridients, directions, kcal, servings, tags, editSection }) => (
+const RecipePreview = ({ newRecipe, editSection }) => (
   <div>
     <Heading subheading>Please check if everything is OK</Heading>
     <StyledPreview>
-      <Name name={name} editSection={editSection} />
-      <Description description={description} editSection={editSection} />
-      <ImagesList images={images} editSection={editSection} />
-      <IngridientsList ingridients={ingridients} editSection={editSection} />
-      <DirectionsList directions={directions} editSection={editSection} />
-      <InfoBox kcal={kcal} servings={servings} editSection={editSection} />
-      <TagsBox tags={tags} editSection={editSection} />
+      <Name name={newRecipe.name} editSection={editSection} />
+      <Description description={newRecipe.description} editSection={editSection} />
+      {newRecipe.images.length > 0
+        && <ImagesList images={newRecipe.images} editSection={editSection} />}
+      <IngridientsList ingridients={newRecipe.ingridients} editSection={editSection} />
+      <DirectionsList directions={newRecipe.directions} editSection={editSection} />
+      {(newRecipe.kcal.length > 0 || newRecipe.servings.length > 0)
+        && <InfoBox
+          kcal={newRecipe.kcal}
+          servings={newRecipe.servings}
+          editSection={editSection}
+        /> }
+      {newRecipe.tags.length > 0
+        && <TagsBox tags={newRecipe.tags} editSection={editSection} />}
     </StyledPreview>
     <Button next primary>Save</Button>
   </div>
 );
 
 RecipePreview.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  images: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  })).isRequired,
-  ingridients: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-  directions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-  kcal: PropTypes.string.isRequired,
-  servings: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  newRecipe: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      src: PropTypes.string
+    })),
+    ingridients: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    })),
+    directions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    })),
+    kcal: PropTypes.string,
+    servings: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    }))
+  }),
   editSection: PropTypes.func.isRequired
 };
 

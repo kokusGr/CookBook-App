@@ -12,19 +12,28 @@ import uniqueId from '../../utils/uniqueId';
 
 class RecipeTags extends React.Component {
   state = {
+    tags: this.props.tags || [],
     newTag: ''
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.tags !== nextProps.tags) {
+      this.setState({
+        tags: nextProps.tags
+      });
+    }
+  }
+
   addNewTag = () => {
-    const name = this.state.newTag.trim();
-    if (name.length > 0) {
-      const tags = this.props.tags.slice('');
+    const text = this.state.newTag.trim();
+    if (text.length > 0) {
+      const tags = this.state.tags.slice('');
       const newTag = {
         id: uniqueId(),
-        name
+        text
       };
       tags.push(newTag);
-      this.props.updateList(tags, 'tags');
+      this.props.onSave(tags, 'tags');
       this.setState({
         newTag: ''
       });
@@ -32,8 +41,15 @@ class RecipeTags extends React.Component {
   }
 
   deleteTag = (e) => {
-    const newArr = this.props.tags.filter(tag => tag.id !== e.currentTarget.id);
-    this.props.updateList(newArr, 'tags');
+    const newArr = this.state.tags.filter(tag => tag.id !== e.currentTarget.id);
+    this.props.onSave(newArr, 'tags');
+  }
+
+  handleKeyPress = (e) => {
+    if (e.which === 13) {
+      e.preventDefault();
+      this.addNewTag();
+    }
   }
 
   handleChange = (e) => {
@@ -43,7 +59,7 @@ class RecipeTags extends React.Component {
   }
 
   render() {
-    const { tags } = this.props;
+    const { tags } = this.state;
     return (
       <div>
         <Heading>Please Add Tags</Heading>
@@ -55,6 +71,7 @@ class RecipeTags extends React.Component {
             id="newTag"
             value={this.state.newTag}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
           <Button
             noMargin add // eslint-disable-line
@@ -63,7 +80,7 @@ class RecipeTags extends React.Component {
         </FlexBox>
         <ul>
           {tags.map(tag => (
-            <TagContainer key={tag.id} tag={tag.name}>
+            <TagContainer key={tag.id} tag={tag.text}>
               <IconCircle topCenter small id={tag.id} onClick={this.deleteTag}>
                 <MdClear />
               </IconCircle>
@@ -79,8 +96,8 @@ RecipeTags.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string
-  })).isRequired,
-  updateList: PropTypes.func.isRequired,
+  })),
+  onSave: PropTypes.func.isRequired,
 };
 
 export default RecipeTags;

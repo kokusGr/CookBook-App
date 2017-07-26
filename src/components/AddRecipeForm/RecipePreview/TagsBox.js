@@ -13,7 +13,7 @@ const TagsBox = ({ tags, editSection }) => (
   <Section editSection={editSection} id="tags">
     <StyledTagsBox>
       {tags.map(tag => (
-        <Tag key={tag.id}>{tag.name}</Tag>
+        <Tag key={tag.id}>{tag.text}</Tag>
       ))}
     </StyledTagsBox>
   </Section>
@@ -21,9 +21,9 @@ const TagsBox = ({ tags, editSection }) => (
 
 TagsBox.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })),
+    id: PropTypes.string,
+    text: PropTypes.string
+  })).isRequired,
   editSection: PropTypes.func.isRequired
 };
 

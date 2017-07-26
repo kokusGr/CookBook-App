@@ -9,16 +9,11 @@ import RecipeIngridients from './RecipeIngridients';
 import RecipeDirections from './RecipeDirections';
 import RecipeAdditionalInfo from './RecipeAdditionalInfo';
 import RecipeTags from './RecipeTags';
-import uniqueId from '../../utils/uniqueId';
 import * as actions from '../../actionCreators/actions';
 import FormSection from './FormSection';
 import getSteps from '../../constants/steps';
 
 class FormManager extends React.Component {
-  state = {
-    isEditing: false,
-    tags: [{ name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }, { name: '#chicken', id: uniqueId() }, { name: '#quick', id: uniqueId() }, { name: '#sunday_dinner', id: uniqueId() }],
-  }
 
   getForm = (currentStep) => {
     const form = this.formTable[currentStep];
@@ -63,20 +58,13 @@ class FormManager extends React.Component {
     ),
     tags: () => (
       <RecipeTags
-        tags={this.state.tags}
-        updateList={this.updateList}
+        tags={this.props.newRecipe.tags}
+        onSave={this.props.updateNewRecipeConnect}
       />),
     preview: () => (
       <RecipePreview
-        name={this.state.name}
-        description={this.state.description}
-        images={this.state.images}
-        ingridients={this.state.ingridients}
-        directions={this.state.directions}
-        kcal={this.state.kcal}
-        servings={this.state.servings}
-        tags={this.state.tags}
-        editSection={this.editSection}
+        newRecipe={this.props.newRecipe}
+        editSection={this.props.editSectionConnect}
       />)
   }
 
@@ -113,7 +101,7 @@ class FormManager extends React.Component {
   }
 
   render() {
-    const { nextStepConnect, stepNumber, prevStepConnect } = this.props;
+    const { nextStepConnect, stepNumber, prevStepConnect, isEditing, finishEditing } = this.props;
     const steps = getSteps();
     const currentStep = steps[stepNumber];
     const form = this.getForm(currentStep);
@@ -124,6 +112,8 @@ class FormManager extends React.Component {
           prevStep={prevStepConnect}
           stepNumber={stepNumber}
           steps={steps}
+          isEditing={isEditing}
+          finishEditing={finishEditing}
         >
           {form}
         </FormSection>
@@ -152,15 +142,23 @@ FormManager.propTypes = {
       text: PropTypes.string
     })),
     kcal: PropTypes.string,
-    servings: PropTypes.string
+    servings: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    }))
   }).isRequired,
-  updateNewRecipeConnect: PropTypes.func.isRequired
+  updateNewRecipeConnect: PropTypes.func.isRequired,
+  editSectionConnect: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  finishEditing: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
     stepNumber: state.stepNumber,
-    newRecipe: state.newRecipe
+    newRecipe: state.newRecipe,
+    isEditing: state.isEditing
   };
 }
 
@@ -168,7 +166,9 @@ function mapDispatchToProps(dispatch) {
   return {
     nextStepConnect: () => dispatch(actions.nextStep()),
     prevStepConnect: () => dispatch(actions.prevStep()),
-    updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field))
+    updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field)),
+    editSectionConnect: stepNumber => dispatch(actions.editSection(stepNumber)),
+    finishEditing: () => dispatch(actions.finishEditing())
   };
 }
 

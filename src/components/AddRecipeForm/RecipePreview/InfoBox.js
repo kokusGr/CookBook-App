@@ -35,8 +35,8 @@ const InfoBox = ({ kcal, servings, editSection }) => (
 );
 
 InfoBox.propTypes = {
-  kcal: PropTypes.string.isRequired,
-  servings: PropTypes.string.isRequired,
+  kcal: PropTypes.string,
+  servings: PropTypes.string,
   editSection: PropTypes.func.isRequired
 };
 

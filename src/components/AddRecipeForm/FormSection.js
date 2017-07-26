@@ -19,9 +19,18 @@ const StyledFormSection = styled.div`
   }
 `;
 
-const FormSection = ({ stepNumber, nextStep, prevStep, steps, ...props }) => (
+const FormSection = ({
+  stepNumber,
+  nextStep,
+  prevStep,
+  steps,
+  finishEditing,
+  isEditing,
+  ...props
+}) => (
   <StyledFormSection>
     {props.children}
+    {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
     {stepNumber > 0
       && <Button next primary onClick={prevStep}>Back</Button>}
     {stepNumber < steps.length - 1
@@ -38,7 +47,9 @@ FormSection.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
   prevStep: PropTypes.func.isRequired,
-  steps: PropTypes.arrayOf(PropTypes.string).isRequired
+  steps: PropTypes.arrayOf(PropTypes.string).isRequired,
+  finishEditing: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired
 };
 
 export default FormSection;

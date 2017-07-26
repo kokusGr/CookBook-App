@@ -18,10 +18,11 @@ const DirectionList = ({ directions, editSection }) => (
   <Section editSection={editSection} id="directions">
     <StyledDirectionsList>
       <ListTitle>Directions</ListTitle>
+      {directions.length === 0 && <p>No directions!</p>}
       <OrderedList>
         {directions.map(direction => (
           <ListItem direction key={direction.id}>
-            {direction.name}
+            {direction.text}
           </ListItem>
         ))}
       </OrderedList>
@@ -31,9 +32,9 @@ const DirectionList = ({ directions, editSection }) => (
 
 DirectionList.propTypes = {
   directions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })),
+    id: PropTypes.string,
+    text: PropTypes.string
+  })).isRequired,
   editSection: PropTypes.func.isRequired
 };
 
