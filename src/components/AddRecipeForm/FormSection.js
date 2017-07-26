@@ -27,17 +27,29 @@ const FormSection = ({
   finishEditing,
   isEditing,
   ...props
-}) => (
-  <StyledFormSection>
-    {props.children}
-    {isEditing && <Button next primary onClick={finishEditing}>Save</Button>}
-    {stepNumber > 0
-      && <Button next primary onClick={prevStep}>Back</Button>}
-    {stepNumber < steps.length - 1
-      && <Button next primary onClick={nextStep}>Next</Button>}
-    {/* {isEditing && <Button next primary onClick={finishEditing}>Save</Button>} */}
-  </StyledFormSection>
-);
+}) => {
+  let buttons;
+  if (isEditing) {
+    buttons = <Button next primary onClick={finishEditing}>Save</Button>;
+  } else if (stepNumber === 0) {
+    buttons = <Button next primary onClick={nextStep}>Next</Button>;
+  } else if (stepNumber === steps.length - 1) {
+    buttons = <Button next primary onClick={prevStep}>Back</Button>;
+  } else {
+    buttons = (
+      <div>
+        <Button next primary onClick={prevStep}>Back</Button>
+        <Button next primary onClick={nextStep}>Next</Button>;
+      </div>
+    );
+  }
+  return (
+    <StyledFormSection>
+      {props.children}
+      {buttons}
+    </StyledFormSection>
+  );
+};
 
 FormSection.propTypes = {
   children: PropTypes.oneOfType([
