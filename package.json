@@ -5,12 +5,14 @@
   "author": "Konrad Greń",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node tools/srcServer.js"
+    "start": "nodemon tools/srcServer.js --exec babel-node"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "izitoast": "^1.1.1",
+    "mongoose": "^4.11.4",
     "open": "0.0.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -51,6 +53,7 @@
     "file-loader": "^0.11.2",
     "jsdom": "^11.0.0",
     "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
     "react-test-renderer": "^15.6.1",
     "redux-immutable-state-invariant": "^2.0.0",
     "url-loader": "^0.5.9",
