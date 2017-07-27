@@ -5,9 +5,10 @@
   "author": "Konrad Greń",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon tools/srcServer.js --exec babel-node"
+    "start": "babel-node tools/srcServer.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",

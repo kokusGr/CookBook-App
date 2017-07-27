@@ -1,3 +1,6 @@
+import mongoose from 'mongoose';
+import Recipe from './models/recipe';
+
 const data = [
   {
     id: '213',
@@ -25,6 +28,22 @@ const data = [
   }
 ];
 
-const getAllRecipes = () => data;
+const seedDB = () => {
+  Recipe.remove((err) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log('recipes removed');
+  });
+  data.map((seed) => {
+    Recipe.create(seed, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Camp added');
+      }
+    });
+  });
+};
 
-export default getAllRecipes;
+export default seedDB;

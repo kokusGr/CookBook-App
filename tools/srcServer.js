@@ -5,6 +5,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import Recipe from './models/recipe';
 import config from '../webpack.config.dev';
+import seedDB from './seeds';
 
 /* eslint-disable no-console */
 
@@ -16,6 +17,8 @@ const router = express.Router();
 mongoose.connect('mongodb://localhost/cookbook_app', () => {
   console.log('DB connected');
 });
+
+seedDB();
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
