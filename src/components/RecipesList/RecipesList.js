@@ -11,7 +11,7 @@ class RecipesList extends React.Component {
       <div>
         <Columns>
           {recipes.map(recipe => (
-            <Thumbnail key={recipe.mainImage.id} recipe={recipe} />
+            <Thumbnail key={recipe['_id']} recipe={recipe} />
           ))}
         </Columns>
       </div>

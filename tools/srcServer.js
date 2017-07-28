@@ -43,15 +43,15 @@ router.route('/recipes')
       if (err) {
         res.send(err);
       }
-      res.send(recipes);
+      return res.send(recipes);
     });
   })
   .post((req, res) => {
-    new Recipe(req.body).save((err) => {
+    new Recipe(req.body).save((err, data) => {
       if (err) {
         res.send(err);
       }
-      res.json({ message: 'Recipe Added to DB!' });
+      res.send(data);
     });
   });
 

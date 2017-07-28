@@ -40,16 +40,35 @@ export function saveRecipe(recipe) {
   };
 }
 
-export function loadAllRecipes(recipes) {
-  return {
-    type: actions.LOAD_ALL_RECIPES,
-    recipes
-  };
-}
-
 export function selectMainImage(clickedImage) {
   return {
     type: actions.SELECT_MAIN_IMAGE,
     clickedImage
+  };
+}
+
+export function loadAllRecipesSuccess(recipes) {
+  return {
+    type: actions.LOAD_ALL_RECIPES_SUCCESS,
+    recipes
+  };
+}
+
+export function loadAllRecipesRequest() {
+  return {
+    type: actions.LOAD_ALL_RECIPES_REQUEST
+  };
+}
+
+export function saveRecipeSuccess(recipe) {
+  return {
+    type: actions.SAVE_RECIPE_SUCCESS,
+    recipe
+  };
+}
+
+export function saveRecipeRequest() {
+  return {
+    type: actions.SAVE_RECIPE_REQUEST
   };
 }

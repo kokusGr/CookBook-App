@@ -4,12 +4,10 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import App from './components/App';
-import RecipesApi from '../tools/api/recipesApi';
-import { loadAllRecipes } from './actionCreators/actions';
+import { loadAllRecipes } from './actionCreators/thunks';
 
 const store = configureStore();
-RecipesApi.getAllRecipes()
-  .then(response => store.dispatch(loadAllRecipes(response)));
+store.dispatch(loadAllRecipes());
 
 const render = (Component) => {
   ReactDOM.render(

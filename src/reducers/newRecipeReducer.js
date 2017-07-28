@@ -1,8 +1,6 @@
 import { UPDATE_NEW_RECIPE, SELECT_MAIN_IMAGE } from '../constants/actionTypes';
-import uniqueID from '../utils/uniqueId';
 
 const initialState = {
-  id: uniqueID(),
   name: '',
   description: '',
   images: [],

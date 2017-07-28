@@ -10,6 +10,7 @@ import RecipeDirections from './RecipeDirections';
 import RecipeAdditionalInfo from './RecipeAdditionalInfo';
 import RecipeTags from './RecipeTags';
 import * as actions from '../../actionCreators/actions';
+import * as thunks from '../../actionCreators/thunks';
 import FormSection from './FormSection';
 import getSteps from '../../constants/steps';
 
@@ -150,7 +151,7 @@ function mapDispatchToProps(dispatch) {
     updateNewRecipeConnect: (newValue, field) => dispatch(actions.updateNewRecipe(newValue, field)),
     editSectionConnect: stepNumber => dispatch(actions.editSection(stepNumber)),
     finishEditingConnect: () => dispatch(actions.finishEditing()),
-    saveRecipeConnect: recipe => dispatch(actions.saveRecipe(recipe)),
+    saveRecipeConnect: recipe => dispatch(thunks.saveRecipe(recipe)),
     selectMainImageConnect: clickedImage => dispatch(actions.selectMainImage(clickedImage))
   };
 }
