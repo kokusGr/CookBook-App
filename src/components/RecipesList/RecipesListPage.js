@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Heading1 from '../common/Heading1';
 import TopBox from './TopBox';
 import Button from '../common/Button';
@@ -12,7 +13,9 @@ const RecipesListPage = () => (
     <TopBox>
       <Wrapper>
         <FlexBox noLayout stripe>
-          <Button noMargin>Add Recipe</Button>
+          <Link to="/recipes/new">
+            <Button noMargin>Add Recipe</Button>
+          </Link>
           <Heading1>Recipes List Page</Heading1>
         </FlexBox>
       </Wrapper>
