@@ -15,14 +15,20 @@ const compiler = webpack(config);
 const router = express.Router();
 
 if (process.env.NODE_ENV === 'production') {
-  mongoose.connect('mongodb://localhost/cookbook_app', () => {
-    console.log('DB connected');
-  });
+  mongoose.connect('mongodb://localhost/cookbook_app')
+    .then(
+      () => console.log('Connected to DB'),
+      err => console.log('Error!', err)
+    );
 } else {
-  mongoose.connect('mongodb://localhost/cookbook_app_temp', () => {
-    console.log('connected to temp DB');
-  });
-  seedDB();
+  mongoose.connect('mongodb://localhost/cookbook_app_temp')
+    .then(
+      () => {
+        console.log('connected to temp DB');
+        seedDB();
+      },
+      err => console.log('Sth went wrong', err)
+    );
 }
 
 

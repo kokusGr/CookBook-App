@@ -5,7 +5,8 @@
   "author": "Konrad Greń",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node tools/srcServer.js"
+    "start": "cross-env NODE_ENV=production babel-node tools/srcServer.js",
+    "startDev": "cross-env NODE_ENV=development babel-node tools/srcServer.js"
   },
   "dependencies": {
     "axios": "^0.16.2",

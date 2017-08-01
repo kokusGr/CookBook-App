@@ -117,7 +117,7 @@ const seedDB = () => {
       console.log('recipes removed');
       data.map(seed => (
         Recipe.create(seed).then(
-          newRecipe => console.log('Success!', newRecipe),
+          newRecipe => console.log('Success!', newRecipe.name),
           error => console.log('Error!', error)
         )
       ));
