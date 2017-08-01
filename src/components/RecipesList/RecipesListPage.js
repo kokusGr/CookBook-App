@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from '../common/Heading';
+import Heading1 from '../common/Heading1';
 import TopBox from './TopBox';
 import Button from '../common/Button';
 import Wrapper from '../common/Wrapper';
@@ -11,7 +11,7 @@ const RecipesListPage = () => (
     <TopBox>
       <Wrapper>
         <Button noMargin>Add Recipe</Button>
-        <Heading float="right" noMargin orange>Recipes List Page</Heading>
+        <Heading1>Recipes List Page</Heading1>
       </Wrapper>
     </TopBox>
     <PageSection>

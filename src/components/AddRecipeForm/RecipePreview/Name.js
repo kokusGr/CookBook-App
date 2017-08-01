@@ -1,21 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Section from './Section';
-
-const Title = styled.h3`
-  margin: 0;
-  font-size: 2.2rem;
-  font-weight: 300;
-  color: #FFF;
-  font-style: italic;
-  margin-bottom: 0.875rem;
-`;
+import Text from '../../common/Text';
 
 const Name = ({ name, editSection }) => (
   <Section editSection={editSection} id="name">
     {name.length === 0 && <p>No recipe name!</p>}
-    <Title>{name}</Title>
+    <Text pageReview>{name}</Text>
   </Section>
 );
 

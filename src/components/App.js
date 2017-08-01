@@ -5,12 +5,14 @@ import globalStyle from '../globalStyle'; // eslint-disable-line no-unused-vars
 import RecipesListPage from './RecipesList/RecipesListPage';
 import Header from './Header/Header';
 import AddRecipeFormPage from './AddRecipeForm/AddRecipeFormPage';
+import ShowRecipePage from './ShowRecipe/ShowRecipePage';
 
 const App = () =>
   (
     <ThemeProvider theme={theme}>
       <div>
         <Header />
+        <ShowRecipePage />
         <RecipesListPage />
         <AddRecipeFormPage />
       </div>

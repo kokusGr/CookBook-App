@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Recipe from './models/recipe';
 
 const data = [
@@ -32,18 +31,15 @@ const seedDB = () => {
   Recipe.remove((err) => {
     if (err) {
       console.log(err);
+    } else {
+      console.log('recipes removed');
+      data.map(seed => (
+        Recipe.create(seed).then(
+          newRecipe => console.log('Success!', newRecipe),
+          error => console.log('Error!', error)
+        )
+      ));
     }
-    console.log('recipes removed');
-  });
-  data.map((seed) => {
-    Recipe.create(seed, (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('Camp added');
-      }
-    });
   });
 };
-
 export default seedDB;

@@ -6,7 +6,7 @@ import TextInput from './TextInput';
 import Button from '../common/Button';
 import TagContainer from './TagContainer';
 import Label from './Label';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 import IconCircle from '../common/IconCircle';
 import uniqueId from '../../utils/uniqueId';
 
@@ -62,7 +62,7 @@ class RecipeTags extends React.Component {
     const { tags } = this.state;
     return (
       <div>
-        <Heading>Please Add Tags</Heading>
+        <Heading2 formSection>Please Add Tags</Heading2>
         <FlexBox>
           <Label hidden htmlFor="newTag">Ingridients</Label>
           <TextInput

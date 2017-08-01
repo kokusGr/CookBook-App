@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import NumberInput from './NumberInput';
 import Label from './Label';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 
 const StyledInfoForm = styled.div`
   position: relative;
@@ -35,7 +35,7 @@ class RecipeAdditionalInfo extends React.Component {
   render() {
     return (
       <div>
-        <Heading>Please Provide Additional Info</Heading>
+        <Heading2 formSection>Please Provide Additional Info</Heading2>
         <StyledInfoForm>
           <NumberInput id="kcal" value={this.state.kcal} onChange={this.handleChange} onBlur={this.hanldeSubmit} />
           <Label htmlFor="kcal">Kcal per 100g</Label>

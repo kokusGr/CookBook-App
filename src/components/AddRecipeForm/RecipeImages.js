@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Label from './Label';
 import ImageInput from './ImageInput';
 import ImagePreview from './ImagePreview';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 import uniqueId from '../../utils/uniqueId';
 
 class RecipeImages extends React.Component {
@@ -45,7 +45,7 @@ class RecipeImages extends React.Component {
   render() {
     return (
       <div>
-        <Heading>Please Add Some Images</Heading>
+        <Heading2 formSection>Please Add Some Images</Heading2>
         <Label file htmlFor="img">Add new image</Label>
         <ImageInput onChange={this.handleChange} id="img" />
         <ImagePreview

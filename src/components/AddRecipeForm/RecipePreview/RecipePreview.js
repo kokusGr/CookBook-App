@@ -8,7 +8,7 @@ import IngridientsList from './IngridientsList';
 import DirectionsList from './DirectionsList';
 import InfoBox from './InfoBox';
 import TagsBox from './TagsBox';
-import Heading from '../../common/Heading';
+import Heading2 from '../../common/Heading2';
 import Button from '../../common/Button';
 
 const StyledPreview = styled.div`
@@ -19,7 +19,7 @@ const StyledPreview = styled.div`
 
 const RecipePreview = ({ newRecipe, editSection, saveRecipe }) => (
   <div>
-    <Heading subheading>Please check if everything is OK</Heading>
+    <Heading2 formSection>Please check if everything is OK</Heading2>
     <StyledPreview>
       <Name name={newRecipe.name} editSection={editSection} />
       <Description description={newRecipe.description} editSection={editSection} />

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from '../common/Image';
+import Text from '../common/Text';
+import Heading2 from '../common/Heading2';
 
 const StyledThumbnail = styled.div`
   background-color: #FFF;
@@ -9,26 +11,11 @@ const StyledThumbnail = styled.div`
   padding: 6px;
 `;
 
-const ThumbnalTitle = styled.h3`
-  font-weight: 400;
-  font-size: 1.6rem;
-  margin: .6rem 0 .8rem;
-  font-style: italic;
-`;
-
-const ThumbnailDescription = styled.p`
-  font-weight: 300;
-  font-size: .9rem;
-  margin: 0;
-  letter-spacing: .05rem;
-  line-height: 1.7;
-`;
-
 const Thumbnail = ({ recipe }) => (
   <StyledThumbnail>
     <Image src={recipe.mainImage.src} />
-    <ThumbnalTitle>{recipe.name}</ThumbnalTitle>
-    <ThumbnailDescription>{recipe.description}</ThumbnailDescription>
+    <Heading2>{recipe.name}</Heading2>
+    <Text thumbnail>{recipe.description}</Text>
   </StyledThumbnail>
 );
 

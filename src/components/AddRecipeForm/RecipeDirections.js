@@ -7,7 +7,7 @@ import FlexBox from '../common/FlexBox';
 import Label from './Label';
 import TextInput from './TextInput';
 import ListItem from './ListItem';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 import IconCircle from '../common/IconCircle';
 import uniqueId from '../../utils/uniqueId';
 
@@ -68,7 +68,7 @@ class RecipeDirections extends React.Component {
     const { directions } = this.state;
     return (
       <div>
-        <Heading>Please Tell Us How You Did It</Heading>
+        <Heading2 formSection>Please Tell Us How You Did It</Heading2>
         <Label hidden htmlFor="newDirection">Directions</Label>
         <FlexBox>
           <TextInput

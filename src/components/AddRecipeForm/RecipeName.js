@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from './TextInput';
 import Label from './Label';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 
 class RecipeName extends React.Component {
   state = {
@@ -22,7 +22,7 @@ class RecipeName extends React.Component {
   render() {
     return (
       <div>
-        <Heading>Please Name Your Recipes</Heading>
+        <Heading2 formSection>Please Name Your Recipes</Heading2>
         <Label hidden htmlFor="name">Recipe Name</Label>
         <TextInput primary id="name" placeholder="Chicken Kiev" value={this.state.name} onChange={this.handleChange} onBlur={this.handleSubmit} />
       </div>

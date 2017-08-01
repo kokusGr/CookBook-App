@@ -6,7 +6,7 @@ import Label from './Label';
 import TextInput from './TextInput';
 import FlexBox from '../common/FlexBox';
 import ListItem from './ListItem';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 import IconCircle from '../common/IconCircle';
 import uniqueId from '../../utils/uniqueId';
 
@@ -64,7 +64,7 @@ class RecipeIngridients extends React.Component {
     const { ingridients } = this.state;
     return (
       <div>
-        <Heading>Please Add Needed Ingridients</Heading>
+        <Heading2 formSection>Please Add Needed Ingridients</Heading2>
         <FlexBox>
           <Label hidden htmlFor="ingridients">Ingridients</Label>
           <TextInput

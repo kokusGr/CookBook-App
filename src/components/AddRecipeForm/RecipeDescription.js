@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from '../common/Heading';
+import Heading2 from '../common/Heading2';
 import TextInput from './TextInput';
 import Label from './Label';
 
@@ -23,7 +23,7 @@ class RecipeDescription extends React.Component {
   render() {
     return (
       <div>
-        <Heading>Please Provide Short Description</Heading>
+        <Heading2 formSection>Please Provide Short Description</Heading2>
         <Label hidden htmlFor="description">Recipe Description</Label>
         <TextInput box id="description" placeholder="This is the best dish I have ever tasted!" value={this.state.description} onChange={this.handleChange} onBlur={this.handleSubmit} />
       </div>
