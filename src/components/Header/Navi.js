@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledNavi = styled.nav`
   padding: 30px 50px;
@@ -30,16 +31,13 @@ const Navi = () => (
   <StyledNavi>
     <ul>
       <li>
-        <a>Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a>Recipes List</a>
+        <Link to="/recipes">Recipes List</Link>
       </li>
       <li>
-        <a>Add new recipe</a>
-      </li>
-      <li>
-        <a>Categories</a>
+        <Link to="/recipes/new">Add new recipe</Link>
       </li>
     </ul>
   </StyledNavi>
