@@ -34,44 +34,36 @@ const Recipe = ({ recipe }) => (
     </FlexBox>
     <FlexBox row>
       <Column width="31%">
-        <Heading2>Ingridientos</Heading2>
         <ul>
-          <Ingridiento>Pomodoro</Ingridiento>
-          <Ingridiento>Czosnoro</Ingridiento>
-          <Ingridiento>Marchewolo</Ingridiento>
-          <Ingridiento>Winoro</Ingridiento>
-          <Ingridiento>Pomodoro</Ingridiento>
-          <Ingridiento>Czosnoro</Ingridiento>
-          <Ingridiento>Marchewolo</Ingridiento>
-          <Ingridiento>Winoro</Ingridiento>
+          {recipe.ingridients.map(ingridient => (
+            <Ingridiento key={ingridient.id}>{ingridient.text}</Ingridiento>
+          ))}
         </ul>
       </Column>
       <Column width="65%">
         <Heading2>Directionoro</Heading2>
         <OrderedList>
-          <ListItem direction>Cut the Pomidoro, Czosnoro and Marchewolo.</ListItem>
-          <ListItem direction>Put the Pomidoro, Czosnoro and Marchewolo into Garnolo
-            and saute for 5min.</ListItem>
-          <ListItem direction>Pour the Winoro and stir until half of liqiudoro is gone</ListItem>
+          {recipe.directions.map(direction => (
+            <ListItem direction key={direction.id}>{direction.text}</ListItem>
+          ))}
         </OrderedList>
       </Column>
     </FlexBox>
     <FlexBox row>
       <Column width="100%" alignCenter>
         <Text info>
-          <MdCake />Kcal per 100g: <span>345</span>
+          <MdCake />Kcal per 100g: <span>{recipe.kcal}</span>
         </Text>
         <Text info>
-          <MdLocalCafe />Number of Servings: <span>4</span>
+          <MdLocalCafe />Number of Servings: <span>{recipe.servings}</span>
         </Text>
       </Column>
     </FlexBox>
     <FlexBox row>
       <FlexBox noLayout>
-        <ImageContainer src="https://static.pexels.com/photos/511650/pexels-photo-511650.jpeg" />
-        <ImageContainer src="https://static.pexels.com/photos/511650/pexels-photo-511650.jpeg" />
-        <ImageContainer src="https://static.pexels.com/photos/511650/pexels-photo-511650.jpeg" />
-        <ImageContainer src="https://static.pexels.com/photos/511650/pexels-photo-511650.jpeg" />
+        {recipe.images.map(image => (
+          <ImageContainer key={image.id} src={image.src} />
+        ))}
       </FlexBox>
     </FlexBox>
   </Wrapper>
