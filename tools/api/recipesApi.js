@@ -12,7 +12,7 @@ class RecipesApi {
   static saveRecipe(recipe) {
     return new Promise((resolve, reject) => {
       axios.post('/api/recipes', recipe)
-        .then(response => resolve(response.data.data))
+        .then(response => resolve(response.data))
         .catch(error => reject(error));
     });
   }
