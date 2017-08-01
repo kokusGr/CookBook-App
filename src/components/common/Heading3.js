@@ -2,11 +2,13 @@ import styled, { css } from 'styled-components';
 
 const style = {
   default: css`
+    text-align: left;
     font-weight: 300;
-    font-size: 3rem;
-    margin-top: 0.8rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
+    color: ${props => props.theme.colors.mainBlack};
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 0.15rem;
+    font-size: 1.2rem;
   `,
 
   hidden: css`
@@ -14,9 +16,9 @@ const style = {
   `
 };
 
-const Heading1 = styled.h1`
+const Heading3 = styled.h3`
   ${style.default};
   ${props => (props.hidden ? style.hidden : null)};
 `;
 
-export default Heading1;
+export default Heading3;

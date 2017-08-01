@@ -5,13 +5,16 @@ import Button from '../common/Button';
 import Wrapper from '../common/Wrapper';
 import PageSection from '../common/PageSection';
 import RecipesListManager from './RecipesListManager';
+import FlexBox from '../common/FlexBox';
 
 const RecipesListPage = () => (
   <div>
     <TopBox>
       <Wrapper>
-        <Button noMargin>Add Recipe</Button>
-        <Heading1>Recipes List Page</Heading1>
+        <FlexBox noLayout stripe>
+          <Button noMargin>Add Recipe</Button>
+          <Heading1>Recipes List Page</Heading1>
+        </FlexBox>
       </Wrapper>
     </TopBox>
     <PageSection>

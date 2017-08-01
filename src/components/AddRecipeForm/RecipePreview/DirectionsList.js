@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ListTitle from './ListTitle';
+import Heading3 from '../../common/Heading3';
 import Section from './Section';
 import ListItem from '../ListItem';
 
@@ -17,7 +17,7 @@ const OrderedList = styled.ol`
 const DirectionList = ({ directions, editSection }) => (
   <Section editSection={editSection} id="directions">
     <StyledDirectionsList>
-      <ListTitle>Directions</ListTitle>
+      <Heading3>Directions</Heading3>
       {directions.length === 0 && <p>No directions!</p>}
       <OrderedList>
         {directions.map(direction => (

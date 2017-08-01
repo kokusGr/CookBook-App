@@ -39,6 +39,7 @@ const Recipe = ({ recipe }) => {
       </FlexBox>
       <FlexBox row>
         <Column width="31%">
+          <Heading2>Ingridients</Heading2>
           <ul>
             {recipe.ingridients.map(ingridient => (
               <Ingridiento key={ingridient.id}>{ingridient.text}</Ingridiento>
@@ -46,7 +47,7 @@ const Recipe = ({ recipe }) => {
           </ul>
         </Column>
         <Column width="65%">
-          <Heading2>Directionoro</Heading2>
+          <Heading2>Directions</Heading2>
           <OrderedList>
             {recipe.directions.map(direction => (
               <ListItem direction key={direction.id}>{direction.text}</ListItem>

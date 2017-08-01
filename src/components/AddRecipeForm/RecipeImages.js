@@ -4,6 +4,7 @@ import Label from './Label';
 import ImageInput from './ImageInput';
 import ImagePreview from './ImagePreview';
 import Heading2 from '../common/Heading2';
+import Heading3 from '../common/Heading3';
 import uniqueId from '../../utils/uniqueId';
 
 class RecipeImages extends React.Component {
@@ -48,6 +49,7 @@ class RecipeImages extends React.Component {
         <Heading2 formSection>Please Add Some Images</Heading2>
         <Label file htmlFor="img">Add new image</Label>
         <ImageInput onChange={this.handleChange} id="img" />
+        <Heading3 hidden>Image preview</Heading3>
         <ImagePreview
           images={this.state.images}
           handleClick={this.deleteImages}

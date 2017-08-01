@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ListTitle from './ListTitle';
 import Section from './Section';
 import ListItem from '../ListItem';
+import Heading3 from '../../common/Heading3';
 
 const List = styled.ul`
   padding-top: 1rem;
@@ -16,7 +16,7 @@ const StyledIngridientList = styled.div`
 const IngridientsList = ({ ingridients, editSection }) => (
   <Section editSection={editSection} id="ingridients">
     <StyledIngridientList>
-      <ListTitle>Ingridients</ListTitle>
+      <Heading3>Ingridients</Heading3>
       {ingridients.length === 0 && <p>No ingridients!</p>}
       <List>
         {ingridients.map(ingridient => (
