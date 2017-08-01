@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Image from '../common/Image';
 import Text from '../common/Text';
@@ -12,11 +13,13 @@ const StyledThumbnail = styled.div`
 `;
 
 const Thumbnail = ({ recipe }) => (
-  <StyledThumbnail>
-    <Image src={recipe.mainImage.src} />
-    <Heading2>{recipe.name}</Heading2>
-    <Text thumbnail>{recipe.description}</Text>
-  </StyledThumbnail>
+  <Link to={`/recipes/${recipe['_id']}`}>
+    <StyledThumbnail>
+      <Image src={recipe.mainImage.src} />
+      <Heading2>{recipe.name}</Heading2>
+      <Text thumbnail>{recipe.description}</Text>
+    </StyledThumbnail>
+  </Link>
 );
 
 Thumbnail.propTypes = {

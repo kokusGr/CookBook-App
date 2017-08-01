@@ -2,7 +2,7 @@ import * as actions from './actions';
 import recipesApi from '../../tools/api/recipesApi';
 
 export const loadAllRecipes = () => (dispatch) => {
-  dispatch(actions.loadAllRecipesRequest);
+  dispatch(actions.loadAllRecipesRequest());
   return recipesApi.getAllRecipes()
     .then(
       recipes => dispatch(actions.loadAllRecipesSuccess(recipes)),
@@ -11,7 +11,7 @@ export const loadAllRecipes = () => (dispatch) => {
 };
 
 export const saveRecipe = recipe => (dispatch) => {
-  dispatch(actions.saveRecipeRequest);
+  dispatch(actions.saveRecipeRequest());
   return recipesApi.saveRecipe(recipe)
     .then(
       response => dispatch(actions.saveRecipeSuccess(response)),

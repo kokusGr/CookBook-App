@@ -3,7 +3,7 @@ import axios from 'axios';
 class RecipesApi {
   static getAllRecipes() {
     return new Promise((resolve, reject) => {
-      axios.get('api/recipes')
+      axios.get('/api/recipes')
         .then(response => resolve(response.data))
         .catch(error => reject(error));
     });
