@@ -14,11 +14,17 @@ const app = express();
 const compiler = webpack(config);
 const router = express.Router();
 
-mongoose.connect('mongodb://localhost/cookbook_app', () => {
-  console.log('DB connected');
-});
+if (process.env.NODE_ENV === 'production') {
+  mongoose.connect('mongodb://localhost/cookbook_app', () => {
+    console.log('DB connected');
+  });
+} else {
+  mongoose.connect('mongodb://localhost/cookbook_app_temp', () => {
+    console.log('connected to temp DB');
+  });
+  seedDB();
+}
 
-seedDB();
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
