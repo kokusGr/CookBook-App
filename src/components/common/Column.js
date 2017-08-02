@@ -9,7 +9,7 @@ const style = {
   `,
 
   recipeImage: css`
-    max-height: 300;
+    max-height: 300px;
     overflow-y: hidden;
     padding: 0;
   `,
