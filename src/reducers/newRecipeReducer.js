@@ -4,7 +4,10 @@ const initialState = {
   name: '',
   description: '',
   images: [],
-  mainImage: {},
+  mainImage: {
+    id: '',
+    src: ''
+  },
   ingridients: [],
   directions: [],
   kcal: '',

@@ -5,7 +5,7 @@ import IconCircle from '../common/IconCircle';
 import ImageContainer from '../common/ImageContainer';
 import FlexBox from '../common/FlexBox';
 
-const PreviewImages = ({ images, handleClick, selectImage, mainImage, ...props }) => (
+const PreviewImages = ({ images, handleClick, selectMainImage, mainImage, ...props }) => (
   <FlexBox {...props}>
     {images.length === 0 && <p>No images were selected!</p>}
     {images.map(img => (
@@ -13,7 +13,7 @@ const PreviewImages = ({ images, handleClick, selectImage, mainImage, ...props }
         key={img.id}
         src={img.src}
         id={img.id}
-        onClick={selectImage}
+        onClick={() => selectMainImage(img)}
         selected={img.id === mainImage.id}
       >
         {handleClick && <IconCircle topCenter id={img.id} onClick={handleClick}>
@@ -25,16 +25,18 @@ const PreviewImages = ({ images, handleClick, selectImage, mainImage, ...props }
 );
 
 PreviewImages.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    src: PropTypes.string
-  })).isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      src: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   mainImage: PropTypes.shape({
     id: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string,
   }),
   handleClick: PropTypes.func,
-  selectImage: PropTypes.func
+  selectMainImage: PropTypes.func.isRequired,
 };
 
 export default PreviewImages;
