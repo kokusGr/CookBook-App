@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import StyledForm from './FormSection';
 import NameFieldContainer from './NameFieldContainer';
 
 class AddRecipeForm extends React.Component {
@@ -20,12 +21,11 @@ class AddRecipeForm extends React.Component {
     } = this.props;
     return (
       <div>
-        <h1>Hello</h1>
-        <form onSubmit={this.handleSubmit}>
+        <StyledForm onSubmit={this.handleSubmit}>
           {stepNumber === 0 && <NameFieldContainer />}
 
           <input type="submit" value="Click me!" />
-        </form>
+        </StyledForm>
       </div>
     );
   }
