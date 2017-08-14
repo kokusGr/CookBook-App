@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import StyledForm from './FormSection';
 import NameFieldContainer from './NameFieldContainer';
+import DescriptionFieldContainer from './DescriptionFieldContainer';
 
 class AddRecipeForm extends React.Component {
   static propTypes = {
@@ -23,6 +24,7 @@ class AddRecipeForm extends React.Component {
       <div>
         <StyledForm onSubmit={this.handleSubmit}>
           {stepNumber === 0 && <NameFieldContainer />}
+          {stepNumber === 1 && <DescriptionFieldContainer />}
 
           <input type="submit" value="Click me!" />
         </StyledForm>

@@ -11,6 +11,7 @@ const NameField = ({ name, updateNewRecipe, }) => (
     <TextInput
       primary
       id="name"
+      name="name"
       placeholder="Chicken Kiev"
       value={name}
       onChange={e => updateNewRecipe(e.currentTarget.value, e.currentTarget.name)}
@@ -22,7 +23,7 @@ const NameField = ({ name, updateNewRecipe, }) => (
 
 NameField.propTypes = {
   updateNewRecipe: PropTypes.func.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 export default NameField;
