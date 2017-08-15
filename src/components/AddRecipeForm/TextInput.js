@@ -29,6 +29,7 @@ const style = {
     color: ${props => props.theme.colors.mainBlack};
     padding: 13px;
     font-size: 1.3rem;
+    flex: 1; 
   `,
 
   box: css`
