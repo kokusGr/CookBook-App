@@ -9,16 +9,22 @@ import IngridientsFieldContainer from './IngridientsFieldContainer';
 import DirectionsFieldContainer from './DirectionsFieldContainer';
 import AdditionalInfoFieldsContainer from './AdditionalInfoFieldContainer';
 import TagFieldContainer from './TagFieldContainer';
+import RecipePreviewContainer from './RecipePreviewContainer';
+import Button from '../common/Button';
 
 class AddRecipeForm extends React.Component {
   static propTypes = {
     stepNumber: PropTypes.number.isRequired,
     nextStep: PropTypes.func.isRequired,
+    prevStep: PropTypes.func.isRequired,
+    isEditing: PropTypes.bool.isRequired,
+    finishEditing: PropTypes.func.isRequired,
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.nextStep();
+    const f = this.props.isEditing ? this.props.finishEditing : this.props.nextStep;
+    f();
   }
 
   render() {
@@ -35,7 +41,26 @@ class AddRecipeForm extends React.Component {
           {stepNumber === 4 && <DirectionsFieldContainer />}
           {stepNumber === 5 && <AdditionalInfoFieldsContainer />}
           {stepNumber === 6 && <TagFieldContainer />}
-          <input type="submit" value="Click me!" />
+          {stepNumber === 7 && <RecipePreviewContainer />}
+
+          {stepNumber < 7
+          &&
+          <Button
+            next
+            type="submit"
+          >
+            NEXT
+          </Button>}
+
+          {stepNumber > 0
+          &&
+          <Button
+            next
+            type="button"
+            onClick={this.props.prevStep}
+          >
+            PREV
+          </Button>}
         </StyledForm>
       </div>
     );

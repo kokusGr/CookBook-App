@@ -13,7 +13,7 @@ const PreviewImages = ({ images, handleClick, selectMainImage, mainImage, ...pro
         key={img.id}
         src={img.src}
         id={img.id}
-        onClick={() => selectMainImage(img)}
+        onClick={() => (selectMainImage ? selectMainImage(img) : null)}
         selected={img.id === mainImage.id}
       >
         {handleClick && <IconCircle topCenter id={img.id} onClick={handleClick}>
@@ -36,7 +36,7 @@ PreviewImages.propTypes = {
     src: PropTypes.string,
   }),
   handleClick: PropTypes.func,
-  selectMainImage: PropTypes.func.isRequired,
+  selectMainImage: PropTypes.func,
 };
 
 export default PreviewImages;

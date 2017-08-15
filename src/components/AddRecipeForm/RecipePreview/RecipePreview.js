@@ -17,58 +17,72 @@ const StyledPreview = styled.div`
   padding-top: 2.25rem;
 `;
 
-const RecipePreview = ({ newRecipe, editSection, saveRecipe }) => (
+const RecipePreview = ({ newRecipe, editSection, saveRecipe, }) => (
   <div>
     <Heading2 formSection>Please check if everything is OK</Heading2>
     <StyledPreview>
       <Name name={newRecipe.name} editSection={editSection} />
       <Description description={newRecipe.description} editSection={editSection} />
-      {newRecipe.images.length > 0
-        && <ImagesList
-          images={newRecipe.images}
-          editSection={editSection}
-          mainImage={newRecipe.mainImage}
-        />}
+      <ImagesList
+        images={newRecipe.images}
+        editSection={editSection}
+        mainImage={newRecipe.mainImage}
+      />
       <IngridientsList ingridients={newRecipe.ingridients} editSection={editSection} />
       <DirectionsList directions={newRecipe.directions} editSection={editSection} />
-      {(newRecipe.kcal.length > 0 || newRecipe.servings.length > 0)
-        && <InfoBox
-          kcal={newRecipe.kcal}
-          servings={newRecipe.servings}
-          editSection={editSection}
-        /> }
-      {newRecipe.tags.length > 0
-        && <TagsBox tags={newRecipe.tags} editSection={editSection} />}
+      <InfoBox
+        kcal={newRecipe.kcal}
+        servings={newRecipe.servings}
+        editSection={editSection}
+      />
+      <TagsBox tags={newRecipe.tags} editSection={editSection} />
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          saveRecipe(newRecipe);
+        }}
+        primary
+        next
+      >
+        SAVE
+      </Button>
     </StyledPreview>
-    <Button next primary onClick={() => saveRecipe(newRecipe)}>Save</Button>
   </div>
 );
 
 RecipePreview.propTypes = {
   newRecipe: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-    images: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      src: PropTypes.string
-    })),
-    ingridients: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string
-    })),
-    directions: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string
-    })),
-    kcal: PropTypes.string,
-    servings: PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string
-    }))
-  }),
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    ingridients: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    directions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    kcal: PropTypes.string.isRequired,
+    servings: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
   editSection: PropTypes.func.isRequired,
-  saveRecipe: PropTypes.func.isRequired
+  saveRecipe: PropTypes.func.isRequired,
 };
 
 export default RecipePreview;

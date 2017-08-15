@@ -9,7 +9,7 @@ class AdditionalInfoFieldsContainer extends React.Component {
 
   render() {
     return (
-      <AdditionalInfoFields />
+      <AdditionalInfoFields {...this.props} />
     );
   }
 }
