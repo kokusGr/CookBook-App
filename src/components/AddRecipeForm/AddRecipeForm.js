@@ -6,6 +6,7 @@ import NameFieldContainer from './NameFieldContainer';
 import DescriptionFieldContainer from './DescriptionFieldContainer';
 import ImagesFieldContainer from './ImagesFieldContainer';
 import IngridientsFieldContainer from './IngridientsFieldContainer';
+import DirectionsFieldContainer from './DirectionsFieldContainer';
 
 class AddRecipeForm extends React.Component {
   static propTypes = {
@@ -29,6 +30,7 @@ class AddRecipeForm extends React.Component {
           {stepNumber === 1 && <DescriptionFieldContainer />}
           {stepNumber === 2 && <ImagesFieldContainer />}
           {stepNumber === 3 && <IngridientsFieldContainer />}
+          {stepNumber === 4 && <DirectionsFieldContainer />}
           <input type="submit" value="Click me!" />
         </StyledForm>
       </div>

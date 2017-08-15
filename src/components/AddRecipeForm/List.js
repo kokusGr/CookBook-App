@@ -38,7 +38,7 @@ class List extends React.Component {
       isEditable,
     } = this.props;
     const listNodes = list.map(item => (
-      <ListItem key={item.id}>
+      <ListItem key={item.id} direction={this.props.name === 'directions'}>
         {isEditable
           &&
           <IconCircle
