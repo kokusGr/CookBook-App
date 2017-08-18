@@ -11,6 +11,7 @@ import AdditionalInfoFieldsContainer from './AdditionalInfoFieldContainer';
 import TagFieldContainer from './TagFieldContainer';
 import RecipePreviewContainer from './RecipePreviewContainer';
 import Button from '../common/Button';
+import Message from '../common/Message';
 
 class AddRecipeForm extends React.Component {
   static propTypes = {
@@ -18,18 +19,20 @@ class AddRecipeForm extends React.Component {
     nextStep: PropTypes.func.isRequired,
     prevStep: PropTypes.func.isRequired,
     isEditing: PropTypes.bool.isRequired,
-    finishEditing: PropTypes.func.isRequired,
+    newRecipe: PropTypes.shape({}).isRequired,
+    formErrors: PropTypes.shape({}).isRequired,
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const f = this.props.isEditing ? this.props.finishEditing : this.props.nextStep;
-    f();
+    this.props.nextStep(this.props.stepNumber, this.props.newRecipe);
   }
 
   render() {
     const {
       stepNumber,
+      isEditing,
+      formErrors,
     } = this.props;
     return (
       <div>
@@ -43,16 +46,24 @@ class AddRecipeForm extends React.Component {
           {stepNumber === 6 && <TagFieldContainer />}
           {stepNumber === 7 && <RecipePreviewContainer />}
 
+          <div>
+            {Object.keys(formErrors).length >= 1
+            &&
+            Object.values(formErrors)
+              .map(key => key
+                .map(error => <Message key={error.id}>{error.message}</Message>))}
+          </div>
+
           {stepNumber < 7
           &&
           <Button
             next
             type="submit"
           >
-            NEXT
+            {isEditing ? 'Save Changes' : 'NEXT'}
           </Button>}
 
-          {stepNumber > 0
+          {stepNumber > 0 && !isEditing
           &&
           <Button
             next

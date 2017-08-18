@@ -4,7 +4,7 @@ import TextInput from './TextInput';
 import Label from './Label';
 import Heading2 from '../common/Heading2';
 
-const NameField = ({ name, updateNewRecipe, }) => (
+const NameField = ({ name, updateNewRecipeValidation, }) => (
   <div>
     <Heading2 formSection>Please Name Your Recipe</Heading2>
     <Label hidden htmlFor="name">Recipe Name</Label>
@@ -14,7 +14,7 @@ const NameField = ({ name, updateNewRecipe, }) => (
       name="name"
       placeholder="Chicken Kiev"
       value={name}
-      onChange={e => updateNewRecipe(e.currentTarget.value, e.currentTarget.name)}
+      onChange={e => updateNewRecipeValidation(e.currentTarget.value, e.currentTarget.name)}
       required
       minLength="3"
     />
@@ -22,7 +22,7 @@ const NameField = ({ name, updateNewRecipe, }) => (
 );
 
 NameField.propTypes = {
-  updateNewRecipe: PropTypes.func.isRequired,
+  updateNewRecipeValidation: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 

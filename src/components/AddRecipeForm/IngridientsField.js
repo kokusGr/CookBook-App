@@ -5,11 +5,11 @@ import Heading2 from '../common/Heading2';
 import ListInput from './ListInput';
 import List from './List';
 
-const RecipeIngridients = ({ ingridients, updateNewRecipe, }) => (
+const RecipeIngridients = ({ ingridients, updateNewRecipeValidation, }) => (
   <div>
     <Heading2 formSection>Please Add Needed Ingridients</Heading2>
-    <ListInput name="ingridients" label="recipe ingridients" handleClick={updateNewRecipe} list={ingridients} />
-    <List name="ingridients" list={ingridients} type="ul" isEditable handleUpdate={updateNewRecipe} />
+    <ListInput name="ingridients" label="recipe ingridients" handleClick={updateNewRecipeValidation} list={ingridients} />
+    <List name="ingridients" list={ingridients} type="ul" isEditable handleUpdate={updateNewRecipeValidation} />
   </div>
 );
 
@@ -18,7 +18,7 @@ RecipeIngridients.propTypes = {
     id: PropTypes.string,
     text: PropTypes.string
   })),
-  updateNewRecipe: PropTypes.func.isRequired,
+  updateNewRecipeValidation: PropTypes.func.isRequired,
 };
 
 export default RecipeIngridients;

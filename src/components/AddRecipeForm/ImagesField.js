@@ -18,7 +18,7 @@ class RecipeImages extends React.Component {
     };
     const images = this.props.images.slice('');
     images.push(newImg);
-    this.props.updateNewRecipe(images, 'images');
+    this.props.updateNewRecipeValidation(images, 'images');
     if (images.length === 1) {
       this.props.selectMainImage(newImg);
     }
@@ -26,7 +26,7 @@ class RecipeImages extends React.Component {
 
   deleteImages = (e) => {
     const newArr = this.props.images.filter(img => img.id !== e.currentTarget.id);
-    this.props.updateNewRecipe(newArr, 'images');
+    this.props.updateNewRecipeValidation(newArr, 'images');
   }
 
   render() {
@@ -63,7 +63,7 @@ RecipeImages.propTypes = {
     id: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
   }).isRequired,
-  updateNewRecipe: PropTypes.func.isRequired,
+  updateNewRecipeValidation: PropTypes.func.isRequired,
   selectMainImage: PropTypes.func.isRequired,
 };
 

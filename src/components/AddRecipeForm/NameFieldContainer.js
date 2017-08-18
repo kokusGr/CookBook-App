@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NameField from './NameField';
-import { updateNewRecipe } from '../../actionCreators/actions';
+import { updateNewRecipeValidation } from '../../actionCreators/thunks';
 
 class NameFieldContainer extends React.Component {
 
@@ -21,7 +21,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateNewRecipe: (value, field) => dispatch(updateNewRecipe(value, field))
+    updateNewRecipeValidation: (value, field) => dispatch(updateNewRecipeValidation(value, field))
   };
 }
 

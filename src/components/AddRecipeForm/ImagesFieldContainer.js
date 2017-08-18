@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectMainImage, updateNewRecipe } from '../../actionCreators/actions';
+import { selectMainImage, } from '../../actionCreators/actions';
+import { updateNewRecipeValidation } from '../../actionCreators/thunks';
 import ImagesField from './ImagesField';
 
 class ImagesFieldContainer extends React.Component {
@@ -23,7 +24,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     selectMainImage: clickedImage => dispatch(selectMainImage(clickedImage)),
-    updateNewRecipe: (value, field) => dispatch(updateNewRecipe(value, field)),
+    updateNewRecipeValidation: (value, field) => dispatch(updateNewRecipeValidation(value, field)),
   };
 }
 

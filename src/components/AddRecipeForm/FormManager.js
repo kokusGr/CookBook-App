@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import AddRecipeForm from './AddRecipeForm';
-import { nextStep, prevStep, finishEditing, } from '../../actionCreators/actions';
+import { prevStep, } from '../../actionCreators/actions';
+import { nextStep } from '../../actionCreators/thunks';
 
 class FormManager extends React.Component {
   static propTypes = {}
@@ -18,14 +19,15 @@ function mapStateToProps(state) {
   return {
     stepNumber: state.stepNumber,
     isEditing: state.isEditing,
+    formErrors: state.formErrors,
+    newRecipe: state.newRecipe,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    nextStep: () => dispatch(nextStep()),
+    nextStep: (stepNumber, recipe) => dispatch(nextStep(stepNumber, recipe)),
     prevStep: () => dispatch(prevStep()),
-    finishEditing: () => dispatch(finishEditing()),
   };
 }
 

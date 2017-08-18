@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import IngridientsField from './IngridientsField';
-import { updateNewRecipe } from '../../actionCreators/actions';
+import { updateNewRecipeValidation } from '../../actionCreators/thunks';
 
 class IngridientsFieldContainer extends React.Component {
 
@@ -21,7 +21,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateNewRecipe: (value, field) => dispatch(updateNewRecipe(value, field)),
+    updateNewRecipeValidation: (value, field) => dispatch(updateNewRecipeValidation(value, field)),
   };
 }
 

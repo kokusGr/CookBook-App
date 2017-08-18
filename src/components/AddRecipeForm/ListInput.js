@@ -32,18 +32,20 @@ class ListInput extends React.Component {
   handleClick = (e) => {
     e.preventDefault();
 
-    const arr = Array.from(this.props.list);
-    const newListItem = {
-      id: uniqueId(),
-      text: this.state.value,
-    };
+    if (this.state.value.trim().length > 0) {
+      const arr = Array.from(this.props.list);
+      const newListItem = {
+        id: uniqueId(),
+        text: this.state.value.trim(),
+      };
 
-    arr.push(newListItem);
-    this.props.handleClick(arr, this.props.name);
-    this.setState({
-      value: ''
-    });
-  };
+      arr.push(newListItem);
+      this.props.handleClick(arr, this.props.name);
+      this.setState({
+        value: ''
+      });
+    }
+  }
 
   handleKeyPress = (e) => {
     if (e.which === 13) {

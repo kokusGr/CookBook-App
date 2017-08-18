@@ -12,7 +12,7 @@ const StyledInfoForm = styled.div`
   margin: 0 auto;
 `;
 
-const AdditionalInfoFields = ({ kcal, servings, updateNewRecipe, }) => (
+const AdditionalInfoFields = ({ kcal, servings, updateNewRecipeValidation, }) => (
   <div>
     <Heading2 formSection>Please Provide Additional Info</Heading2>
     <StyledInfoForm>
@@ -20,7 +20,7 @@ const AdditionalInfoFields = ({ kcal, servings, updateNewRecipe, }) => (
         id="kcal"
         name="kcal"
         value={kcal}
-        onChange={e => updateNewRecipe(e.currentTarget.value, e.currentTarget.name)}
+        onChange={e => updateNewRecipeValidation(e.currentTarget.value, e.currentTarget.name)}
       />
       <Label htmlFor="kcal">Kcal per 100g</Label>
     </StyledInfoForm>
@@ -29,7 +29,7 @@ const AdditionalInfoFields = ({ kcal, servings, updateNewRecipe, }) => (
         id="servings"
         name="servings"
         value={servings}
-        onChange={e => updateNewRecipe(e.currentTarget.value, e.currentTarget.name)}
+        onChange={e => updateNewRecipeValidation(e.currentTarget.value, e.currentTarget.name)}
       />
       <Label htmlFor="servings">Number of servings</Label>
     </StyledInfoForm>
@@ -39,7 +39,7 @@ const AdditionalInfoFields = ({ kcal, servings, updateNewRecipe, }) => (
 AdditionalInfoFields.propTypes = {
   kcal: PropTypes.string.isRequired,
   servings: PropTypes.string.isRequired,
-  updateNewRecipe: PropTypes.func.isRequired,
+  updateNewRecipeValidation: PropTypes.func.isRequired,
 };
 
 export default AdditionalInfoFields;
