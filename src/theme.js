@@ -3,7 +3,8 @@ const theme = {
     mainOrange: '#FF9600',
     mainBlack: '#353535',
     mainGray: '#DCDCDC',
-    lightGray: '#EFEFEF'
+    lightGray: '#EFEFEF',
+    mainRed: '#D50000',
   }
 };
 
