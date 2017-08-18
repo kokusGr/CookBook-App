@@ -1,11 +1,11 @@
-import { NEXT_STEP, PREV_STEP, EDIT_SECTION, FINISH_EDITING } from '../constants/actionTypes';
+import { NEXT_STEP_SUCCESS, PREV_STEP, EDIT_SECTION, FINISH_EDITING } from '../constants/actionTypes';
 import getSteps from '../constants/steps';
 
 const steps = getSteps();
 
 const stepNumberReducer = (state = 0, action) => {
   switch (action.type) {
-    case NEXT_STEP:
+    case NEXT_STEP_SUCCESS:
       return state + 1;
 
     case PREV_STEP:

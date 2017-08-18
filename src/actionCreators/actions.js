@@ -1,8 +1,15 @@
 import * as actions from '../constants/actionTypes';
 
-export function nextStep() {
+export function nextStepSuccess() {
   return {
-    type: actions.NEXT_STEP
+    type: actions.NEXT_STEP_SUCCESS
+  };
+}
+
+export function nextStepRejected(errors) {
+  return {
+    type: actions.NEXT_STEP_REJECTED,
+    errors,
   };
 }
 
@@ -16,7 +23,14 @@ export function updateNewRecipe(newValue, field) {
   return {
     type: actions.UPDATE_NEW_RECIPE,
     newValue,
-    field
+    field,
+  };
+}
+
+export function updateErrors(errors) {
+  return {
+    type: actions.UPDATE_ERRORS,
+    errors,
   };
 }
 
@@ -70,5 +84,12 @@ export function saveRecipeSuccess(recipe) {
 export function saveRecipeRequest() {
   return {
     type: actions.SAVE_RECIPE_REQUEST
+  };
+}
+
+export function saveRecipeRejected(errors) {
+  return {
+    type: actions.SAVE_RECIPE_REJECTED,
+    errors,
   };
 }
