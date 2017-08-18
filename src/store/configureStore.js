@@ -6,10 +6,13 @@ import rootReducer from '../reducers/index';
 
 const loggerMiddleware = createLogger();
 
-export default function configureStore(initialState) {
+function configureStore(initialState) {
   return createStore(
     rootReducer,
     initialState,
     applyMiddleware(thunkMiddleware, loggerMiddleware, reduxImmutableStateInvariant())
   );
 }
+const store = configureStore();
+export default store;
+
